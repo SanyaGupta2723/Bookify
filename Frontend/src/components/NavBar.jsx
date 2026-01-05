@@ -4,10 +4,21 @@ function NavBar() {
   const [open, setOpen] = useState(false);
 
   const menuItemClass =
-    "px-3 py-2 rounded-md transition-all duration-200 hover:bg-white/10 hover:text-white";
+    "relative px-3 py-2 cursor-pointer overflow-visible \
+   after:content-[''] after:absolute after:left-0 after:-bottom-1 \
+   after:h-[2px] after:w-0 after:bg-white \
+   after:transition-all after:duration-300 hover:after:w-full ";
 
   return (
-    <nav className="bg-base-100 shadow-md px-6">
+<nav className="sticky top-0 z-50
+                bg-base-100/80 backdrop-blur
+                px-6
+                border-b border-white/30
+                shadow-[0_1px_15px_rgba(255,255,255,0.35)]
+                hover:border-white
+                hover:shadow-[0_1px_25px_rgba(255,255,255,0.7)]
+                transition-all duration-300">
+
       <div className="flex items-center h-16">
 
         {/* LEFT: Logo */}
@@ -25,7 +36,7 @@ function NavBar() {
 
         {/* CENTER: MENU */}
         <div className="hidden lg:flex flex-1 justify-center">
-          <ul className="menu menu-horizontal gap-4 whitespace-nowrap">
+          <ul className="menu menu-horizontal gap-6 whitespace-nowrap">
             <li><a className={menuItemClass}>Home</a></li>
             <li><a className={menuItemClass}>Fiction</a></li>
             <li><a className={menuItemClass}>Non-Fiction</a></li>
@@ -37,7 +48,8 @@ function NavBar() {
         <div className="hidden lg:flex items-center ml-auto flex-nowrap gap-6">
 
           {/* SEARCH (white border) */}
-          <label className="input flex items-center gap-2 w-56 border border-white/70 bg-transparent transition-all duration-200 hover:border-white">
+          <div classname= "hidden md: block" >
+            <label className="input flex items-center gap-2 w-56 border border-white/70 bg-transparent transition-all duration-200 hover:border-white">
             <svg
               className="h-[1em] opacity-70 text-white"
               xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +66,7 @@ function NavBar() {
             <kbd className="kbd kbd-sm border border-white/60 text-white">⌘</kbd>
             <kbd className="kbd kbd-sm border border-white/60 text-white">K</kbd>
           </label>
+          </div>
 
           {/* THEME TOGGLE (white edge) */}
           <div className="border border-white/70 rounded-full px-3 py-1 hover:border-white transition">
@@ -104,7 +117,7 @@ function NavBar() {
           </div>
 
           {/* LOGIN (white outline button) */}
-          <button className="btn bg-transparent text-white border border-white/70 hover:bg-white/10 hover:border-white transition whitespace-nowrap">
+          <button className="btn bg-transparent rounded-full px-4 py-2 text-white border border-white/70 hover:bg-white/10 hover:border-white transition whitespace-nowrap">
             Login 👥
           </button>
         </div>
@@ -124,7 +137,7 @@ function NavBar() {
               </label>
             </li>
             <li>
-              <button className="btn btn-primary w-full">
+              <button className="btn btn-primary rounded-full w-full">
                 Login 👥
               </button>
             </li>
