@@ -1,11 +1,16 @@
-import React from 'react'
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <div>
-      Hello Sanya
-    </div>
-  )
+    <>
+      <NavBar />
+      <div className="p-6">
+        <h1 className="text-2xl font-bold">
+          Welcome to Bookify 📚
+        </h1>
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
