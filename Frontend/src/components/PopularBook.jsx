@@ -7,6 +7,9 @@ function PopularBook() {
       <h1 className="text-xl font-semibold text-white">
         Popular Books
       </h1>
+      <p>
+        Explore a curated collection of popular books loved by readers across the world. From timeless classics to modern bestsellers, find stories that inspire, educate, and entertain.
+      </p>
     </div>
   )
 }
