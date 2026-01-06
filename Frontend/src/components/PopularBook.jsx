@@ -3,6 +3,7 @@ import list from '../../public/list.json';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Cards from './Cards';
 
 function PopularBook() {
   var settings = {
@@ -53,9 +54,10 @@ function PopularBook() {
     </div>
     <div className="relative max-w-7xl mx-auto px-8 mt-6 mt-16 pb-12">
   <Slider {...settings}>
-    {filterData.map((item) => (
-      <Cards item={item} key={item.id} />
-    ))}
+    {list.map((item) => (
+  <Cards item={item} key={item.id} />
+))}
+
   </Slider>
 </div>
 
