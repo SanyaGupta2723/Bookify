@@ -53,14 +53,9 @@ function PopularBook() {
     </div>
     <div className="relative max-w-7xl mx-auto px-8 mt-6 mt-16 pb-12">
   <Slider {...settings}>
-    <div><h3 className="text-white text-center">1</h3></div>
-    <div><h3 className="text-white text-center">2</h3></div>
-    <div><h3 className="text-white text-center">3</h3></div>
-    <div><h3 className="text-white text-center">4</h3></div>
-    <div><h3 className="text-white text-center">5</h3></div>
-    <div><h3 className="text-white text-center">6</h3></div>
-    <div><h3 className="text-white text-center">7</h3></div>
-    <div><h3 className="text-white text-center">8</h3></div>
+    {filterData.map((item) => (
+      <Cards item={item} key={item.id} />
+    ))}
   </Slider>
 </div>
 
