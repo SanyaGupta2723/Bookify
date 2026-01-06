@@ -1,9 +1,49 @@
 import React from 'react'
 import list from '../../public/list.json';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function PopularBook() {
+  var settings = {
+    dots: true,
+    infinite: false,
+    arrows: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
   return (
-    <div className="max-w-7xl mx-auto px-0 mt-10">
+    <>
+    <div className="max-w-7xl mx-auto px-0 mt-10 px-5">
       <h1 className="text-xl font-semibold text-white">
         Popular Books
       </h1>
@@ -11,6 +51,22 @@ function PopularBook() {
         Explore a curated collection of popular books loved by readers across the world. From timeless classics to modern bestsellers, find stories that inspire, educate, and entertain.
       </p>
     </div>
+    <div className="relative max-w-7xl mx-auto px-8 mt-6 mt-16 pb-12">
+  <Slider {...settings}>
+    <div><h3 className="text-white text-center">1</h3></div>
+    <div><h3 className="text-white text-center">2</h3></div>
+    <div><h3 className="text-white text-center">3</h3></div>
+    <div><h3 className="text-white text-center">4</h3></div>
+    <div><h3 className="text-white text-center">5</h3></div>
+    <div><h3 className="text-white text-center">6</h3></div>
+    <div><h3 className="text-white text-center">7</h3></div>
+    <div><h3 className="text-white text-center">8</h3></div>
+  </Slider>
+</div>
+
+    </>
+    
+    
   )
 }
 
