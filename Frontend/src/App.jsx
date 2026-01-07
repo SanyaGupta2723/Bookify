@@ -1,25 +1,15 @@
-import React from 'react';
-import Home from './home/Home';
-import Fiction from './components/Fiction';
-import { Routes, Route } from "react-router-dom";
-
-
-
+import Home from './home/Home'
+import Fiction from './Fiction/Fiction'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/fiction" element={<Fiction />} />
       
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/Fiction' element={<Fiction/>} />
-      </Routes>
-      
-      
-    </>
-  );
+    </Routes>
+  )
 }
 
-export default App;
-
-
+export default App
