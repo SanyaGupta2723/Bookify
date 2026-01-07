@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Course() {
+function Fiction() {
   return (
     <div>
-      Course 
+      Fiction 
     </div>
   )
 }
 
-export default Course
+export default Fiction

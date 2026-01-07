@@ -1,17 +1,20 @@
 import React from 'react';
 import Home from './home/Home';
-import Course from './components/Course';
-import { Route } from 'react-router-dom';
+import Fiction from './components/Fiction';
+import { Routes, Route } from "react-router-dom";
+
+
 
 
 function App() {
   return (
     <>
-     
+      
       <Routes>
-        <Route patgh='/' element={<Home />} />
-        <Route path='/course' element={<Course />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/Fiction' element={<Fiction />} />
       </Routes>
+      
       
     </>
   );
