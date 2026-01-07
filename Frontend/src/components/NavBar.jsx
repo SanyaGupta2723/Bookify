@@ -38,7 +38,7 @@ function NavBar() {
         <div className="hidden lg:flex flex-1 justify-center">
           <ul className="menu menu-horizontal gap-6 whitespace-nowrap">
             <li><a  href = "/" className={menuItemClass}>Home</a></li>
-            <li><a href = "/Fiction " className={menuItemClass}>Fiction</a></li>
+            <li><a href = "/Fiction" className={menuItemClass}>Fiction</a></li>
             <li><a className={menuItemClass}>Non-Fiction</a></li>
             <li><a className={menuItemClass}>Contact</a></li>
           </ul>
