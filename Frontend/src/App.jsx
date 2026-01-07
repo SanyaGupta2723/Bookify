@@ -1,23 +1,19 @@
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import NavBar from "./components/NavBar";
-import PopularBook from "./components/PopularBook";
+import React from 'react';
+import Home from './home/Home';
+import Course from './components/Course';
+import { Route } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-base-100">
-      <NavBar />
+    <>
      
-
+      <Routes>
+        <Route patgh='/' element={<Home />} />
+        <Route path='/course' element={<Course />} />
+      </Routes>
       
-      <main className="flex-grow">
-        <Hero />
-        <PopularBook />
-      </main>
-      <div className="w-full h-px bg-white/10"></div>
-      <Footer />
-      
-    </div>
+    </>
   );
 }
 
