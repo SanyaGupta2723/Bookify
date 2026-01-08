@@ -55,13 +55,13 @@ function FictionPage() {
       
       <section className="relative min-h-screen">
 
-        <img
-          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66"
-          className="fixed inset-0 w-full h-full object-cover"
-          alt="Library"
-        />
+       <img
+  src="https://images.unsplash.com/photo-1507842217343-583bb7270b66"
+  className="absolute inset-0 w-full h-full object-cover"
+/>
 
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+<div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-10 pb-20">
 
