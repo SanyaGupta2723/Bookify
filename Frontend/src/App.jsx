@@ -1,5 +1,5 @@
 import Home from './home/Home'
-import Fiction from './Fiction/Fiction'
+import Fiction from './Fiction/FictionPage'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
