@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function NavBar() {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+  
   const [open, setOpen] = useState(false);
 
   const menuItemClass =
@@ -83,6 +87,8 @@ function NavBar() {
                 aria-label="sun"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
+                 
+
               >
                 <g
                   strokeLinejoin="round"
@@ -102,6 +108,7 @@ function NavBar() {
                 aria-label="moon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
+                  
               >
                 <g
                   strokeLinejoin="round"
