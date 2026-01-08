@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import FictionHero from "../components/Fiction";
 
 const books = [
   {
@@ -50,7 +49,7 @@ function FictionPage() {
       <div className="h-20 bg-[#020617]"></div>
 
       {/* HERO */}
-      <FictionHero />
+      
 
       {/* BOOKS SECTION */}
       
@@ -72,7 +71,7 @@ function FictionPage() {
 </h1>
 
 <p className="text-center text-white/70 max-w-2xl mx-auto mb-14">
-  Dive into timeless stories, epic fantasies, and unforgettable fictional worlds.
+  Dive into timeless stories, epic fantasies, and unforgettable Fictional worlds.
 </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
