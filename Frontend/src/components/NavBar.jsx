@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Login from "./Login";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -129,9 +130,11 @@ function NavBar() {
   hover:shadow-[0_6px_20px_rgba(99,102,241,0.35)]
   active:scale-95
   transition-all duration-300"
+  onClick={() => document.getElementById("my_modal_5").showModal()}
 >
   Login 👥
 </button>
+<Login />
 
 
         </div>
