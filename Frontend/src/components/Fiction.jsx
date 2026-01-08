@@ -3,7 +3,7 @@ import React from "react";
 function FictionHero() {
   return (
     <section
-      className="relative min-h-screen flex items-center"
+      className="relative min-h-[50vh] flex items-center"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1519682337058-a94d519337bc')",
