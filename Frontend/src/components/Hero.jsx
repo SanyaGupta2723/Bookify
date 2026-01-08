@@ -46,12 +46,28 @@ function Hero() {
       <div className="flex flex-col sm:flex-row
                       gap-3 sm:gap-4
                       justify-center md:justify-start">
-        <button className="btn btn-primary px-6">
-          Browse Books
-        </button>
-        <button className="btn btn-outline border-white/30">
-          Explore Categories
-        </button>
+        <button
+  className="
+  btn btn-primary px-6
+  bg-primary/10 text-primary
+  border border-primary/30
+  hover:bg-primary hover:text-white
+  hover:shadow-md
+  transition-all duration-300"
+>
+  Browse Books
+</button>
+        <button
+  className="
+  btn btn-primary px-6
+  bg-primary/10 text-primary
+  border border-primary/30
+  hover:bg-primary hover:text-white
+  hover:shadow-md
+  transition-all duration-300"
+>
+  Explore Categories
+</button>
       </div>
     </div>
 
