@@ -1,11 +1,31 @@
 import { useEffect, useState } from "react";
 
 function NavBar() {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  );
+    const [theme, setTheme] = useState("dark");
+
   
   const [open, setOpen] = useState(false);
+  // 🔥 page load pe theme set
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  // 🔥 toggle handler
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+
+    document.documentElement.classList.toggle("dark");
+  };
+
 
   const menuItemClass =
     "relative px-3 py-2 cursor-pointer overflow-visible \
