@@ -5,13 +5,15 @@ function Login() {
     <div>
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Hello!</h3>
+    <h3 className="font-bold text-lg">Login</h3>
     <p className="py-4">Press ESC key or click the button below to close</p>
     <div className="modal-action">
-      <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn">Close</button>
-      </form>
+      <div>
+        <span>Email </span> 
+        <br />
+        <input type="Email" placeholder="Enter your email" className="w-80 px-3 border border-gray-300 rounded-md" />
+      </div>
+      
     </div>
   </div>
 </dialog>
