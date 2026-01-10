@@ -33,14 +33,14 @@ function Login() {
         {/* ✅ ACTION BUTTONS */}
         <div className="modal-action mt-5 gap-6">
           <form method="dialog">
-            <button className="btn btn-outline">Cancel</button>
+            <button className="btn btn-outline border-2 border-primary">Cancel</button>
           </form>
           <button
   className="
   btn
   bg-transparent
   border-2 border-primary
-
+  input-bordered
   transition"
 >
   Login
