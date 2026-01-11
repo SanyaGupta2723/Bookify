@@ -3,9 +3,22 @@ import NavBar from '../components/NavBar'
 import Hero from '../components/Hero'
 import PopularBook from '../components/PopularBook'
 import Footer from '../components/Footer'
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form"
+
+
 
 
 function Home() {
+  const location = useLocation();
+
+useEffect(() => {
+  if (location.state?.openLogin) {
+    document.getElementById("my_modal_5")?.showModal();
+  }
+}, [location]);
+
   return (
     <>
     <div className="min-h-screen flex flex-col bg-base-100">

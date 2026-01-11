@@ -39,7 +39,7 @@ function Login() {
 
         {/* ACTION BUTTONS */}
         <div className="modal-action mt-2 gap-5">
-          <form method="dialog">
+          <form onSubmit={handleSubmit(onSubmit)} method="dialog">
            <button
   className="
   btn
