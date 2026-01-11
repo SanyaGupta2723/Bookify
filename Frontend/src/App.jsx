@@ -1,5 +1,6 @@
 import Home from './home/Home'
 import Fiction from './Fiction/FictionPage'
+import Signup from './components/Signup'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
