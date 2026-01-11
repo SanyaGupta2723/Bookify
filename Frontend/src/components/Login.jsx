@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 
 
 function Login() {
+  
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => console.log(data)
+}
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box max-w-md">
@@ -90,6 +100,6 @@ function Login() {
       </div>
     </dialog>
   );
-}
+
 
 export default Login;
