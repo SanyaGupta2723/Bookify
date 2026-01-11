@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import PopularBook from '../components/PopularBook'
 import Footer from '../components/Footer'
 
+
 function Home() {
   return (
     <>
@@ -18,6 +19,7 @@ function Home() {
       </main>
       <div className="w-full h-px bg-white/10"></div>
       <Footer />
+     
       
     </div>
     </>
