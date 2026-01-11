@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
 
 
 function Login() {
   
-  const {
+ const {
     register,
     handleSubmit,
     watch,
@@ -12,7 +14,7 @@ function Login() {
   } = useForm()
 
   const onSubmit = (data) => console.log(data)
-}
+
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box max-w-md">
@@ -32,7 +34,9 @@ function Login() {
             type="email"
             placeholder="Enter your email"
             className="input input-bordered w-full"
+            {...register("email", { required: true })}
           />
+          {errors.email && <span>This field is required</span>}
         </div>
 
         {/* PASSWORD */}
@@ -44,7 +48,9 @@ function Login() {
             type="password"
             placeholder="Enter your password"
             className="input input-bordered w-full"
+            {...register("password", { required: true })}
           />
+          {errors.password && <span>This field is required</span>}
         </div>
 
         {/* ACTION BUTTONS */}
@@ -100,6 +106,6 @@ function Login() {
       </div>
     </dialog>
   );
-
+}
 
 export default Login;
