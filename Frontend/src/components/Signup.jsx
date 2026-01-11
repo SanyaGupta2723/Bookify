@@ -11,21 +11,94 @@ function Signup() {
           Create your account.
         </p>
 
-        <input className="input input-bordered w-full mb-4" placeholder="Name" />
-        <input className="input input-bordered w-full mb-4" placeholder="Email" />
-        <input className="input input-bordered w-full mb-6" placeholder="Password" />
+        {/* NAME */}
+        <div className="form-control w-full mb-6">
+          <label className="label mb-1">
+            <span className="label-text text-sm">Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter your Name"
+            className="
+              w-full
+              bg-transparent
+              border-2
+              border-white
+              rounded-lg
+              px-3 py-2
+              focus:outline-none
+              focus:border-white
+            "
+          />
+        </div>
 
-        <button className="btn btn-primary w-full mb-4">
+        {/* EMAIL */}
+        <div className="form-control w-full mb-6">
+          <label className="label mb-1">
+            <span className="label-text text-sm">Email</span>
+          </label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="
+              w-full
+              bg-transparent
+              border-2
+              border-white
+              rounded-lg
+              px-3 py-2
+              focus:outline-none
+              focus:border-white
+            "
+          />
+        </div>
+
+        {/* PASSWORD */}
+        <div className="form-control w-full mb-8">
+          <label className="label mb-1">
+            <span className="label-text text-sm">Password</span>
+          </label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            className="
+              w-full
+              bg-transparent
+              border-2
+              border-white
+              rounded-lg
+              px-3 py-2
+              focus:outline-none
+              focus:border-white
+            "
+          />
+        </div>
+
+        {/* BUTTON */}
+        <button
+          className="
+            w-full
+            bg-transparent
+            border-2
+            border-white
+            text-white
+            py-2.5
+            rounded-lg
+            hover:bg-white hover:text-black
+            transition
+            mb-4
+          "
+        >
           Create Account
         </button>
 
-        {/* 👇 Login = modal open */}
+        {/* LOGIN LINK */}
         <p className="text-center text-sm">
           Already have an account?{" "}
           <span
             className="text-primary cursor-pointer hover:underline"
             onClick={() =>
-              document.getElementById("login_modal").showModal()
+              document.getElementById("login_modal")?.showModal()
             }
           >
             Login
