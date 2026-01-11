@@ -95,14 +95,14 @@ function Signup() {
         {/* LOGIN LINK */}
         <p className="text-center text-sm">
           Already have an account?{" "}
-          <span
-            className="text-primary cursor-pointer hover:underline"
-            onClick={() =>
-              document.getElementById("login_modal")?.showModal()
-            }
-          >
-            Login
-          </span>
+          <Link
+  to="/"
+  state={{ openLogin: true }}
+  className="text-primary cursor-pointer hover:underline"
+>
+  Login
+</Link>
+
         </p>
 
       </div>
