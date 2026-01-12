@@ -40,9 +40,9 @@ function NonFiction() {
         style={{
           backgroundImage:
             "url('https://i.pinimg.com/1200x/63/99/8b/63998b612cc362b4c39e750674fe9407.jpg')",
-          backgroundSize: "contain",
+          
            backgroundRepeat: "repeat",  
-           backgroundSize: "600px auto",
+           backgroundSize: " contain 600px auto",
         }}
       />
 
