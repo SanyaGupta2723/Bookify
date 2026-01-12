@@ -1,6 +1,7 @@
 import Home from './home/Home'
 import Fiction from './Fiction/FictionPage'
 import Signup from './components/Signup'
+import Nonfiction from './components/Nonfiction'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/Fiction" element={<Fiction />} />
       <Route path="/Signup" element={<Signup />} />
+      <Route path="/Nonfiction" element={<Nonfiction />} />
       
     </Routes>
   )
