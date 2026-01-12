@@ -61,7 +61,7 @@ function NavBar() {
             <li><a href="/" className={menuItemClass}>Home</a></li>
             <li><a href="/Fiction" className={menuItemClass}>Fiction</a></li>
             <li><a href="/Nonfiction" className={menuItemClass}>Non-Fiction</a></li>
-            <li><a className={menuItemClass}>Contact</a></li>
+            <li><a href="/Contact" className={menuItemClass}>Contact</a></li>
           </ul>
         </div>
 

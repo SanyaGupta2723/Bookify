@@ -1,4 +1,7 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+
 
 const nonFictionBooks = [
   {
@@ -23,8 +26,11 @@ const nonFictionBooks = [
   },
 ];
 
+
 function NonFiction() {
   return (
+    <>
+    <NavBar />
     <section className="relative bg-base-100 overflow-hidden">
 
       {/* ✅ BACKGROUND IMAGE */}
@@ -47,7 +53,7 @@ function NonFiction() {
       <div className="relative z-20">
 
         {/* HERO */}
-        <div className="max-w-7xl mx-auto px-6 pt-24 pb-16 grid md:grid-cols-2 gap-10 items-center">
+        <div className="max-w-7xl mx-auto px-6 pt-12 pb-16 grid md:grid-cols-2 gap-10 items-center">
 
           {/* LEFT */}
           <div>
@@ -117,6 +123,8 @@ function NonFiction() {
 
       </div>
     </section>
+     <Footer />
+     </>
   );
 }
 
