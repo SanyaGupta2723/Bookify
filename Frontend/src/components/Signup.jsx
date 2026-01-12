@@ -33,7 +33,19 @@ function Signup() {
             <input
               type="text"
               placeholder="Enter your name"
-              className="input input-bordered w-full"
+              className="
+  w-full
+  bg-transparent
+  border-2
+  border-white
+  rounded-lg
+  px-3 py-2
+  text-white
+  placeholder-white/60
+  focus:outline-none
+  focus:border-white
+"
+
               {...register("name", { required: true })}
             />
             {errors.name && (
@@ -51,7 +63,19 @@ function Signup() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="input input-bordered w-full"
+              className="
+  w-full
+  bg-transparent
+  border-2
+  border-white
+  rounded-lg
+  px-3 py-2
+  text-white
+  placeholder-white/60
+  focus:outline-none
+  focus:border-white
+"
+
               {...register("email", { required: true })}
             />
             {errors.email && (
@@ -62,14 +86,26 @@ function Signup() {
           </div>
 
           {/* PASSWORD */}
-          <div className="form-control w-full mb-8">
+          <div className="form-control w-full mb-6">
             <label className="label mb-2">
               <span className="label-text text-sm">Password</span>
             </label>
             <input
               type="password"
               placeholder="Enter your password"
-              className="input input-bordered w-full"
+              className="
+  w-full
+  bg-transparent
+  border-2
+  border-white
+  rounded-lg
+  px-3 py-2
+  text-white
+  placeholder-white/60
+  focus:outline-none
+  focus:border-white
+"
+
               {...register("password", { required: true })}
             />
             {errors.password && (
