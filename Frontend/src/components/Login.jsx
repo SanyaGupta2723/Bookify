@@ -2,105 +2,98 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-
-
 function Login() {
-  
- const {
+  const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    console.log("LOGIN DATA:", data);
+  };
 
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box max-w-md">
 
-        {/* HEADER */}
         <h3 className="font-bold text-xl mb-1">Login</h3>
         <p className="text-sm opacity-70 mb-8">
           Welcome back! Please login to your account.
         </p>
 
-        {/* EMAIL */}
-        <div className="form-control w-full mb-6">
-          <label className="label mb-3">
-            <span className="label-text text-sm">Email</span>
-          </label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="input input-bordered w-full"
-            {...register("email", { required: true })}
-          />
-          {errors.email && <span>This field is required</span>}
-        </div>
+        {/* ✅ FORM START */}
+        <form onSubmit={handleSubmit(onSubmit)}>
 
-        {/* PASSWORD */}
-        <div className="form-control w-full mb-8">
-          <label className="label mb-3">
-            <span className="label-text text-sm">Password</span>
-          </label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            className="input input-bordered w-full"
-            {...register("password", { required: true })}
-          />
-          {errors.password && <span>This field is required</span>}
-        </div>
+          {/* EMAIL */}
+          <div className="form-control w-full mb-6">
+            <label className="label mb-2">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="input input-bordered w-full"
+              {...register("email", { required: true })}
+            />
+            {errors.email && (
+              <span className="text-error text-sm mt-1">
+                This field is required
+              </span>
+            )}
+          </div>
 
-        {/* ACTION BUTTONS */}
-        <div className="modal-action mt-2 gap-5">
-          <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-           <button
-  className="
-  btn
-  bg-transparent
-  border-2 border-base-content/60
-  text-base-content
-  px-6 py-3
-  min-w-[110px]
-  rounded-lg
-  hover:bg-base-200
-  transition"
->
-  Cancel
-</button>
+          {/* PASSWORD */}
+          <div className="form-control w-full mb-8">
+            <label className="label mb-2">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className="input input-bordered w-full"
+              {...register("password", { required: true })}
+            />
+            {errors.password && (
+              <span className="text-error text-sm mt-1">
+                This field is required
+              </span>
+            )}
+          </div>
 
-          </form>
+          {/* ACTION BUTTONS */}
+          <div className="flex justify-end gap-5">
 
-         <button
-  className="
- btn
-  bg-transparent
-  border-2 border-base-content/60
-  text-base-content
-  px-6 py-3
-  min-w-[110px]
-  rounded-lg
-  hover:bg-base-200
-  transition"
->
-  Login
-</button>
+            {/* ❌ Cancel does NOT submit */}
+            <button
+              type="button"
+              onClick={() =>
+                document.getElementById("my_modal_5").close()
+              }
+              className="btn bg-transparent border-2 border-base-content/60 px-6 py-3 rounded-lg"
+            >
+              Cancel
+            </button>
 
-        </div>
+            {/* ✅ Login submits */}
+            <button
+              type="submit"
+              className="btn bg-transparent border-2 border-base-content/60 px-6 py-3 rounded-lg"
+            >
+              Login
+            </button>
+          </div>
 
-        {/* DIVIDER */}
+        </form>
+        {/* ✅ FORM END */}
+
         <div className="divider my-6 text-sm opacity-60">OR</div>
 
-        {/* SIGNUP LINK */}
         <p className="text-center text-sm">
           Don’t have an account?{" "}
-          <Link 
-          to="/Signup"
-           className="text-primary cursor-pointer hover:underline">
+          <Link to="/Signup" className="text-primary hover:underline">
             Sign up
-          </Link>{" "}
+          </Link>
         </p>
 
       </div>
