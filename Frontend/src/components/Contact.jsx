@@ -89,6 +89,11 @@ function Contact() {
             </span>
           </p>
         </div>
+        {/* ===== SEPARATOR LINE ===== */}
+<div className="mt-24 mb-16">
+  <div className="w-full h-px bg-white/30"></div>
+</div>
+
 
         {/* ===== INFO ROW ===== */}
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 mt-20 text-center">
