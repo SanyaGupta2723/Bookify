@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SanyaGupta2723/Bookify/issues"
   },
-  "homepage": "https://github.com/SanyaGupta2723/Bookify#readme"
+  "homepage": "https://github.com/SanyaGupta2723/Bookify#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
