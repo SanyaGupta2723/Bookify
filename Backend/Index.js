@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import bookRoutes from "./route/book.route.js";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ mongoose
 app.get("/", (req, res) => {
   res.send("BookStore Project!");
 });
+
+app.use("/books", bookRoutes);
 
 app.listen(PORT, () => {
   console.log(`Bookify listening on port ${PORT}`);
