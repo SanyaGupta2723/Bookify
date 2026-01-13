@@ -18,9 +18,9 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("Backend Project!");
+  res.send("BookStore Project!");
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Bookify listening on port ${PORT}`);
 });
