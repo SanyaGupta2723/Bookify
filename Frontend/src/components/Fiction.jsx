@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+// import Cards from "./Cards.jsx"; // use jab cards render karo
 
 function FictionHero() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const getBooks = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/books");
+        setBooks(response.data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
+
+    getBooks();
+  }, []);
+
   return (
     <section
       className="relative min-h-[50vh] flex items-center"
@@ -11,8 +28,8 @@ function FictionHero() {
         backgroundPosition: "center",
       }}
     >
-      {/* DARK + MOODY OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#020617]"></div>
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#020617]" />
 
       {/* HERO CONTENT */}
       <div className="relative z-10 max-w-6xl mx-auto px-6">
