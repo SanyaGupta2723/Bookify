@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import Logout from "./Logout";
+import { Link } from "react-router-dom";
+
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -149,6 +151,7 @@ function NavBar() {
             <li><a className={menuItemClass}>Fiction</a></li>
             <li><a className={menuItemClass}>Non-Fiction</a></li>
             <li><a className={menuItemClass}>Contact</a></li>
+            <li><a className={menuItemClass}>Logout</a></li>
           </ul>
         </div>
       )}
