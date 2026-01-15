@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import bookRoutes from "./route/book.route.js";
 import authRoutes from "./route/auth.route.js";
+import userRoutes from "./route/user.route.js";
 
 
 dotenv.config(); // 👈 sabse upar
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use("/books", bookRoutes);
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 
 // server
