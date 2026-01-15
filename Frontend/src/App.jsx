@@ -5,10 +5,17 @@ import Nonfiction from './components/Nonfiction'
 import Contact from './components/Contact'
 import { Routes, Route } from 'react-router-dom'
 import Logout from "./pages/Logout";
+import { Toaster } from "react-hot-toast";
+
+
+
 
 
 function App() {
   return (
+    <>
+      <Toaster position="top-right" />
+
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Fiction" element={<Fiction />} />
@@ -19,6 +26,11 @@ function App() {
 
       
     </Routes>
+     </>
+  
+
+    
+    
   )
 }
 
