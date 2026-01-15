@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cards from './Cards';
+const book = list;
 
 function PopularBook() {
   var settings = {
@@ -54,7 +55,7 @@ function PopularBook() {
     </div>
     <div className="relative max-w-7xl mx-auto px-8 mt-6 mt-16 pb-12">
   <Slider {...settings}>
-    {list.map((item) => (
+    {book.map((item) => (
   <Cards item={item} key={item.id} />
 ))}
 
