@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import bookRoutes from "./route/book.route.js";
+import authRoutes from "./route/auth.route.js";
+
 
 dotenv.config(); // 👈 sabse upar
 
@@ -30,6 +32,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/books", bookRoutes);
+app.use("/auth", authRoutes);
+
 
 // server
 app.listen(PORT, () => {
