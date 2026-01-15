@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function Login() {
   const {
@@ -9,8 +10,31 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("LOGIN DATA:", data);
+  // 🔐 LOGIN SUBMIT HANDLER
+  const onSubmit = async (data) => {
+    try {
+      // 1️⃣ Backend login API call
+      const res = await axios.post(
+        "http://localhost:5000/auth/login",
+        {
+          email: data.email,
+          password: data.password,
+        }
+      );
+
+      // 2️⃣ Token save in localStorage
+      localStorage.setItem("token", res.data.token);
+
+      // 3️⃣ Success message
+      alert("Login successful");
+
+      // 4️⃣ Modal close
+      document.getElementById("my_modal_5").close();
+
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || "Login failed");
+    }
   };
 
   return (
@@ -38,7 +62,7 @@ function Login() {
             />
             {errors.email && (
               <span className="text-error text-sm mt-1">
-                This field is required
+                Email is required
               </span>
             )}
           </div>
@@ -56,7 +80,7 @@ function Login() {
             />
             {errors.password && (
               <span className="text-error text-sm mt-1">
-                This field is required
+                Password is required
               </span>
             )}
           </div>
@@ -64,7 +88,7 @@ function Login() {
           {/* ACTION BUTTONS */}
           <div className="flex justify-end gap-5">
 
-            {/* ❌ Cancel does NOT submit */}
+            {/* CANCEL */}
             <button
               type="button"
               onClick={() =>
@@ -75,15 +99,15 @@ function Login() {
               Cancel
             </button>
 
-            {/* ✅ Login submits */}
+            {/* LOGIN */}
             <button
               type="submit"
               className="btn bg-transparent border-2 border-base-content/60 px-6 py-3 rounded-lg"
             >
               Login
             </button>
-          </div>
 
+          </div>
         </form>
         {/* ✅ FORM END */}
 

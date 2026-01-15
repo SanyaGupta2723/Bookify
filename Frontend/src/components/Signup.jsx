@@ -1,16 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("SIGNUP DATA:", data);
+  // 🔐 SIGNUP SUBMIT HANDLER
+  const onSubmit = async (data) => {
+    try {
+      // 1️⃣ Backend register API call
+      await axios.post("http://localhost:5000/auth/register", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
+
+      // 2️⃣ Success feedback
+      alert("Account created successfully. Please login.");
+
+      // 3️⃣ Login page par redirect
+      navigate("/");
+
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || "Signup failed");
+    }
   };
 
   return (
@@ -34,23 +55,16 @@ function Signup() {
               type="text"
               placeholder="Enter your name"
               className="
-  w-full
-  bg-transparent
-  border-2
-  border-white
-  rounded-lg
-  px-3 py-2
-  text-white
-  placeholder-white/60
-  focus:outline-none
-  focus:border-white
-"
-
+                w-full bg-transparent border-2 border-white
+                rounded-lg px-3 py-2 text-white
+                placeholder-white/60 focus:outline-none
+                focus:border-white
+              "
               {...register("name", { required: true })}
             />
             {errors.name && (
               <span className="text-error text-sm mt-1">
-                This field is required
+                Name is required
               </span>
             )}
           </div>
@@ -64,23 +78,16 @@ function Signup() {
               type="email"
               placeholder="Enter your email"
               className="
-  w-full
-  bg-transparent
-  border-2
-  border-white
-  rounded-lg
-  px-3 py-2
-  text-white
-  placeholder-white/60
-  focus:outline-none
-  focus:border-white
-"
-
+                w-full bg-transparent border-2 border-white
+                rounded-lg px-3 py-2 text-white
+                placeholder-white/60 focus:outline-none
+                focus:border-white
+              "
               {...register("email", { required: true })}
             />
             {errors.email && (
               <span className="text-error text-sm mt-1">
-                This field is required
+                Email is required
               </span>
             )}
           </div>
@@ -94,23 +101,16 @@ function Signup() {
               type="password"
               placeholder="Enter your password"
               className="
-  w-full
-  bg-transparent
-  border-2
-  border-white
-  rounded-lg
-  px-3 py-2
-  text-white
-  placeholder-white/60
-  focus:outline-none
-  focus:border-white
-"
-
+                w-full bg-transparent border-2 border-white
+                rounded-lg px-3 py-2 text-white
+                placeholder-white/60 focus:outline-none
+                focus:border-white
+              "
               {...register("password", { required: true })}
             />
             {errors.password && (
               <span className="text-error text-sm mt-1">
-                This field is required
+                Password is required
               </span>
             )}
           </div>
@@ -128,11 +128,7 @@ function Signup() {
 
         <p className="text-center text-sm">
           Already have an account?{" "}
-          <Link
-            to="/"
-            state={{ openLogin: true }}
-            className="text-primary hover:underline"
-          >
+          <Link to="/" className="text-primary hover:underline">
             Login
           </Link>
         </p>
