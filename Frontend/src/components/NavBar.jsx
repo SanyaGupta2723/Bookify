@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
+import Logout from "./Logout";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
