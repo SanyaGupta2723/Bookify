@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
-import Logout from "./Logout";
 import { Link } from "react-router-dom";
 
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
+
+  // 🔐 AUTH CHECK
+ const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  setIsLoggedIn(!!token);
+}, []);
+
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
@@ -123,26 +131,29 @@ function NavBar() {
             </label>
           </div>
 
-         <button
-  className="
-  btn btn-sm rounded-full px-6
-  bg-transparent
-  text-primary
-  border-2 border-primary
-  hover:bg-primary hover:text-white
-  hover:shadow-[0_6px_20px_rgba(99,102,241,0.35)]
-  active:scale-95
-  transition-all duration-300"
-  onClick={() => document.getElementById("my_modal_5").showModal()}
->
-  Login 👥
-</button>
-<Login />
-
-
+         {/* 🔐 AUTH BUTTON */}
+          {!isLoggedIn ? (
+            <>
+              <button
+                className="btn btn-sm rounded-full px-6 bg-transparent text-primary border-2 border-primary"
+                onClick={() =>
+                  document.getElementById("my_modal_5").showModal()
+                }
+              >
+                Login 👥
+              </button>
+              <Login />
+            </>
+          ) : (
+            <Link
+              to="/logout"
+              className="btn btn-sm rounded-full px-6 bg-transparent text-error border-2 border-error"
+            >
+              Logout
+            </Link>
+          )}
         </div>
       </div>
-
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden border-t border-base-300">

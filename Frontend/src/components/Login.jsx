@@ -24,6 +24,8 @@ function Login() {
 
       // 2️⃣ Token save in localStorage
       localStorage.setItem("token", res.data.token);
+      window.location.reload();
+
 
       // 3️⃣ Success message
       alert("Login successful");
