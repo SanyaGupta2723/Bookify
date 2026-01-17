@@ -22,7 +22,7 @@ useEffect(() => {
   return (
     <>
     <div className="min-h-screen flex flex-col bg-base-100">
-      <NavBar />
+     
      
 
       
@@ -32,7 +32,7 @@ useEffect(() => {
       </main>
       <div className="w-full h-px bg-white/10"></div>
       
-      <Footer />
+      
      
       
     </div>

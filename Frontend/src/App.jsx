@@ -21,6 +21,7 @@ function App() {
       <Toaster position="top-right" />
       
       
+      <NavBar />
 
     <Routes>
       <Route path="/" element={<Home />} />
@@ -35,7 +36,7 @@ function App() {
 
       
     </Routes>
-    
+    <Footer />
      </>
   
 
