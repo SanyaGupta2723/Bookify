@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Cards({ item }) {
   return (
+    <Link to={`/book/${item._id}`}>
     <div className="px-3 h-full">
       <div
         className="
@@ -51,7 +53,10 @@ function Cards({ item }) {
         </div>
       </div>
     </div>
+    </Link>
   );
+  
 }
+
 
 export default Cards;
