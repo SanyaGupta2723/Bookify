@@ -7,6 +7,8 @@ import { Routes, Route } from 'react-router-dom'
 import Logout from "./pages/Logout";
 import { Toaster } from "react-hot-toast";
 import BrowseBooks from './pages/BrowseBooks';
+import NavBar from './components/NavBar'
+import Footer from './components/Footer'
 
 
 
@@ -17,6 +19,8 @@ function App() {
   return (
     <>
       <Toaster position="top-right" />
+      
+      
 
     <Routes>
       <Route path="/" element={<Home />} />
@@ -31,6 +35,7 @@ function App() {
 
       
     </Routes>
+    
      </>
   
 
