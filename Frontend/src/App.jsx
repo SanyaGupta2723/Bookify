@@ -9,6 +9,8 @@ import { Toaster } from "react-hot-toast";
 import BrowseBooks from './pages/BrowseBooks';
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
+import BookDetails from "./pages/BookDetails";
+
 
 
 
@@ -31,6 +33,7 @@ function App() {
       <Route path="/Contact" element={<Contact />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/browsebooks" element={<BrowseBooks />} />
+      <Route path="/book/:id" element={<BookDetails />} />
 
       
 
