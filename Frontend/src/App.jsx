@@ -10,6 +10,8 @@ import BrowseBooks from './pages/BrowseBooks';
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 import BookDetails from "./pages/BookDetails";
+import Cart from "./pages/Cart";
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
       <Route path="/logout" element={<Logout />} />
       <Route path="/browsebooks" element={<BrowseBooks />} />
       <Route path="/book/:id" element={<BookDetails />} />
+      <Route path="/cart" element={<Cart />} />
 
       
 

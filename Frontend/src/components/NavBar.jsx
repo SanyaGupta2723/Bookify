@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 function NavBar() {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
+  const [cartCount, setCartCount] = useState(0);
+
 
   // 🔐 AUTH CHECK
  const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +23,18 @@ useEffect(() => {
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
+  useEffect(() => {
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartCount(cart.length);
+  };
+
+  updateCartCount();
+  window.addEventListener("storage", updateCartCount);
+
+  return () => window.removeEventListener("storage", updateCartCount);
+}, []);
+
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "softlight" : "dark";
@@ -101,6 +115,16 @@ useEffect(() => {
               <kbd className="kbd kbd-sm">K</kbd>
             </label>
           </div>
+          <Link to="/cart" className="relative btn btn-sm btn-outline">
+  🛒 Cart
+  {cartCount > 0 && (
+    <span className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 rounded-full">
+      {cartCount}
+    </span>
+  )}
+</Link>
+
+
 
           {/* THEME TOGGLE */}
           <div

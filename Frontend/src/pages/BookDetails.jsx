@@ -1,55 +1,100 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const handleAddToCart = () => {
+  // 1️⃣ Existing cart lao
+  const existingCart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+  // 2️⃣ Check: book already in cart?
+  const alreadyInCart = existingCart.find(
+    (item) => item._id === book._id
+  );
+
+  if (alreadyInCart) {
+    alert("Book already in cart!");
+    return;
+  }
+
+  // 3️⃣ New book add karo
+  const updatedCart = [...existingCart, book];
+
+  // 4️⃣ Save back to localStorage
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+  // 5️⃣ Feedback
+  alert("Book added to cart 🛒");
+};
+
 
   useEffect(() => {
     const fetchBook = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/books/${id}`);
         setBook(res.data);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.log("Error fetching book", error);
       }
     };
     fetchBook();
   }, [id]);
 
-  if (!book) return <p className="p-10">Loading...</p>;
+  if (!book) {
+    return <p className="text-center mt-20">Loading...</p>;
+  }
 
   return (
-    <div className="max-w-6xl mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-4">{book.name}</h1>
-      <p className="text-primary text-2xl mb-2">₹{book.price}</p>
+    <div className="max-w-6xl mx-auto px-5 py-16">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
-      <p className="mb-6 text-base-content/80">
+    {/* LEFT IMAGE */}
+    <div className="flex justify-center">
+      <img
+        src={book.image}
+        alt={book.name}
+        className="w-72 md:w-96 rounded-xl shadow-lg"
+      />
+    </div>
+
+    {/* RIGHT CONTENT */}
+    <div className="space-y-5">
+      <h1 className="text-3xl md:text-4xl font-bold">
+        {book.name}
+      </h1>
+
+      <p className="text-2xl font-semibold text-primary">
+        ₹{book.price}
+      </p>
+
+      <p className="text-base-content/80 leading-relaxed">
         {book.description}
       </p>
 
-      <p className="mb-6">
-        <span className="font-semibold">Category:</span> {book.category}
+      <p className="text-sm text-base-content/60">
+        Category: <span className="capitalize">{book.category}</span>
       </p>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 pt-4">
         <button
-          onClick={() => handleAddToCart(book)}
-          className="btn btn-primary"
+          onClick={handleAddToCart}
+          className="btn btn-primary px-8"
         >
           Add to Cart
         </button>
 
-        <button
-          onClick={() => handleWishlist(book)}
-          className="btn btn-outline"
-        >
+        <button className="btn btn-outline px-8">
           ❤️ Wishlist
         </button>
       </div>
     </div>
+
+  </div>
+</div>
+
   );
 }
 
