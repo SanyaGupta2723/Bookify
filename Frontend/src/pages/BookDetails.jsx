@@ -28,6 +28,23 @@ function BookDetails() {
 
   // 5️⃣ Feedback
   alert("Book added to cart 🛒");
+  const addToWishlist = (book) => {
+  const existing = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  const alreadyExists = existing.find(
+    (item) => item._id === book._id
+  );
+
+  if (alreadyExists) {
+    alert("Already in wishlist ❤️");
+    return;
+  }
+
+  const updated = [...existing, book];
+  localStorage.setItem("wishlist", JSON.stringify(updated));
+  alert("Added to wishlist ❤️");
+};
+
 };
 
 
@@ -85,9 +102,14 @@ function BookDetails() {
         >
           Add to Cart
         </button>
+        
 
-        <button className="btn btn-outline px-8">
-          ❤️ Wishlist
+
+        <button 
+          onClick={() => addToWishlist(book)}
+          className="btn btn-primary px-8"
+        >
+          ❤️ Add to Wishlist
         </button>
       </div>
     </div>
