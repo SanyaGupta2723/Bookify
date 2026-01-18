@@ -115,6 +115,10 @@ useEffect(() => {
               <kbd className="kbd kbd-sm">K</kbd>
             </label>
           </div>
+          <Link to="/wishlist" className="btn btn-sm">
+  ❤️ Wishlist
+</Link>
+ 
           <Link to="/cart" className="relative btn btn-sm btn-outline">
   🛒 Cart
   {cartCount > 0 && (
