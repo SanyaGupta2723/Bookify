@@ -1,44 +1,29 @@
-import { useEffect, useState } from "react";
-import Login from "./Login";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import Login from "./Login";
 import { CartContext } from "../context/CartContext";
- 
-
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
-  const [cartCount, setCartCount] = useState(0);
-  const { cartCount: cartCountContext, wishlistCount } = useContext(CartContext);
 
+  // ✅ ONLY COUNTS FROM CONTEXT
+  const { cartCount, wishlistCount } = useContext(CartContext);
 
   // 🔐 AUTH CHECK
- const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  setIsLoggedIn(!!token);
-}, []);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
-
+  // 🌗 THEME LOAD
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
-  useEffect(() => {
-  const updateCartCount = () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartCount(cart.length);
-  };
-
-  updateCartCount();
-  window.addEventListener("storage", updateCartCount);
-
-  return () => window.removeEventListener("storage", updateCartCount);
-}, []);
-
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "softlight" : "dark";
@@ -47,28 +32,12 @@ useEffect(() => {
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
-
-  // 🔹 improved menu item underline
+  // 🔹 MENU ITEM STYLE
   const menuItemClass =
-  "relative px-3 py-2 font-medium text-base-content \
-   transition-colors duration-300 \
-   hover:text-primary \
-   after:absolute after:left-1/2 after:-bottom-1 \
-   after:h-[3px] after:w-0 after:bg-primary \
-   after:rounded-full after:transition-all after:duration-300 \
-   hover:after:w-full hover:after:left-0";
-
+    "relative px-3 py-2 font-medium text-base-content transition-colors duration-300 hover:text-primary after:absolute after:left-1/2 after:-bottom-1 after:h-[3px] after:w-0 after:bg-primary after:rounded-full after:transition-all after:duration-300 hover:after:w-full hover:after:left-0";
 
   return (
-   <nav
-  className="
-  sticky top-0 z-50
-  bg-base-100
-  px-6
-  border-b-2 border-primary/30
-  shadow-[0_4px_20px_rgba(99,102,241,0.15)]
-  transition-all"
->
+    <nav className="sticky top-0 z-50 bg-base-100 px-6 border-b-2 border-primary/30 shadow-[0_4px_20px_rgba(99,102,241,0.15)]">
 
       <div className="flex items-center h-16">
 
@@ -88,88 +57,54 @@ useEffect(() => {
         {/* CENTER */}
         <div className="hidden lg:flex flex-1 justify-center">
           <ul className="menu menu-horizontal gap-6">
-            <li><a href="/" className={menuItemClass}>Home</a></li>
-            <li><a href="/Fiction" className={menuItemClass}>Fiction</a></li>
-            <li><a href="/Nonfiction" className={menuItemClass}>Non-Fiction</a></li>
-            <li><a href="/Contact" className={menuItemClass}>Contact</a></li>
+            <li><Link to="/" className={menuItemClass}>Home</Link></li>
+            <li><Link to="/Fiction" className={menuItemClass}>Fiction</Link></li>
+            <li><Link to="/Nonfiction" className={menuItemClass}>Non-Fiction</Link></li>
+            <li><Link to="/Contact" className={menuItemClass}>Contact</Link></li>
           </ul>
         </div>
 
         {/* RIGHT */}
         <div className="hidden lg:flex items-center ml-auto gap-4">
 
-          {/* SEARCH */}
-          <div className="hidden md:block">
-           <label
-  className="
-  input flex items-center gap-2 w-56
-  bg-transparent
-  border-2 border-base-300
-  focus-within:border-primary
-  focus-within:shadow-[0_0_0_3px_rgba(99,102,241,0.2)]
-  transition"
->
-
-
-              <input
-                type="search"
-                className="grow"
-                placeholder="Search books"
-              />
-              <kbd className="kbd kbd-sm">⌘</kbd>
-              <kbd className="kbd kbd-sm">K</kbd>
-            </label>
-          </div>
+          {/* 🛒 CART */}
           <Link to="/cart" className="relative btn btn-sm">
-  🛒
-  {cartCount > 0 && (
-    <span className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 rounded-full">
-      {cartCount}
-    </span>
-  )}
-</Link>
+            🛒
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 rounded-full">
+                {cartCount}
+              </span>
+            )}
+          </Link>
 
-<Link to="/wishlist" className="relative btn btn-sm">
-  ❤️
-  {wishlistCount > 0 && (
-    <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs px-2 rounded-full">
-      {wishlistCount}
-    </span>
-  )}
-</Link>
+          {/* ❤️ WISHLIST */}
+          <Link to="/wishlist" className="relative btn btn-sm">
+            ❤️
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs px-2 rounded-full">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
 
-
-
-          {/* THEME TOGGLE */}
-          <div
-  className="
-  rounded-full px-3 py-1
-  border-2 border-primary/40
-  bg-transparent
-  hover:bg-primary/10
-  transition"
->
-
+          {/* 🌗 THEME TOGGLE */}
+          <div className="rounded-full px-3 py-1 border-2 border-primary/40 hover:bg-primary/10 transition">
             <label className="toggle">
               <input
                 type="checkbox"
                 checked={theme === "softlight"}
                 onChange={toggleTheme}
               />
-
-              {/* Sun */}
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="4" />
               </svg>
-
-              {/* Moon */}
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
               </svg>
             </label>
           </div>
 
-         {/* 🔐 AUTH BUTTON */}
+          {/* 🔐 AUTH */}
           {!isLoggedIn ? (
             <>
               <button
@@ -192,15 +127,17 @@ useEffect(() => {
           )}
         </div>
       </div>
-      {/* MOBILE MENU */}
+
+      {/* 📱 MOBILE MENU */}
       {open && (
         <div className="lg:hidden border-t border-base-300">
           <ul className="menu menu-vertical p-4 gap-2">
-            <li><a className={menuItemClass}>Home</a></li>
-            <li><a className={menuItemClass}>Fiction</a></li>
-            <li><a className={menuItemClass}>Non-Fiction</a></li>
-            <li><a className={menuItemClass}>Contact</a></li>
-            <li><a className={menuItemClass}>Logout</a></li>
+            <li><Link to="/" className={menuItemClass}>Home</Link></li>
+            <li><Link to="/Fiction" className={menuItemClass}>Fiction</Link></li>
+            <li><Link to="/Nonfiction" className={menuItemClass}>Non-Fiction</Link></li>
+            <li><Link to="/Contact" className={menuItemClass}>Contact</Link></li>
+            <li><Link to="/cart" className={menuItemClass}>Cart</Link></li>
+            <li><Link to="/wishlist" className={menuItemClass}>Wishlist</Link></li>
           </ul>
         </div>
       )}
