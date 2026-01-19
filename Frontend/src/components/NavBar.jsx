@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+ 
 
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
   const [cartCount, setCartCount] = useState(0);
+  const { cartCount: cartCountContext, wishlistCount } = useContext(CartContext);
 
 
   // 🔐 AUTH CHECK
@@ -42,6 +46,7 @@ useEffect(() => {
     localStorage.setItem("theme", newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
   };
+
 
   // 🔹 improved menu item underline
   const menuItemClass =
@@ -115,15 +120,20 @@ useEffect(() => {
               <kbd className="kbd kbd-sm">K</kbd>
             </label>
           </div>
-          <Link to="/wishlist" className="btn btn-sm">
-  ❤️ Wishlist
-</Link>
- 
-          <Link to="/cart" className="relative btn btn-sm btn-outline">
-  🛒 Cart
+          <Link to="/cart" className="relative btn btn-sm">
+  🛒
   {cartCount > 0 && (
     <span className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 rounded-full">
       {cartCount}
+    </span>
+  )}
+</Link>
+
+<Link to="/wishlist" className="relative btn btn-sm">
+  ❤️
+  {wishlistCount > 0 && (
+    <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs px-2 rounded-full">
+      {wishlistCount}
     </span>
   )}
 </Link>
