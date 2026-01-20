@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-
 
 function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const { setWishlistCount } = useContext(CartContext);
-
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -18,6 +15,7 @@ function Wishlist() {
     const updated = wishlist.filter((item) => item._id !== id);
     setWishlist(updated);
     localStorage.setItem("wishlist", JSON.stringify(updated));
+    setWishlistCount(updated.length);
   };
 
   return (
@@ -36,10 +34,7 @@ function Wishlist() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {wishlist.map((item) => (
-            <div
-              key={item._id}
-              className="border rounded-lg p-4"
-            >
+            <div key={item._id} className="border rounded-lg p-4">
               <img
                 src={item.image}
                 alt={item.name}
