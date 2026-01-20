@@ -1,8 +1,6 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
 import Hero from '../components/Hero'
 import PopularBook from '../components/PopularBook'
-import Footer from '../components/Footer'
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
