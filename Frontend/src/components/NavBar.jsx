@@ -26,11 +26,18 @@ function NavBar() {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "softlight" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
+  const currentTheme =
+    document.documentElement.getAttribute("data-theme");
+
+  if (currentTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "softlight");
+    localStorage.setItem("theme", "softlight");
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+  }
+};
+
 
   // 🔹 MENU ITEM STYLE
   const menuItemClass =
