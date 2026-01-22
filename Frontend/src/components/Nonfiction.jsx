@@ -1,6 +1,5 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+
 
 
 const nonFictionBooks = [
@@ -30,7 +29,7 @@ const nonFictionBooks = [
 function NonFiction() {
   return (
     <>
-    <NavBar />
+    
     <section className="relative bg-base-100 overflow-hidden">
 
       {/* ✅ BACKGROUND IMAGE */}
@@ -123,7 +122,7 @@ function NonFiction() {
 
       </div>
     </section>
-     <Footer />
+     
      </>
   );
 }

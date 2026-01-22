@@ -1,6 +1,4 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 
 const books = [
   {
@@ -45,7 +43,7 @@ function FictionPage() {
   return (
     <>
       {/* NAVBAR */}
-      <NavBar />
+      
       <div className="h-20 bg-[#020617]"></div>
 
       {/* HERO */}
@@ -112,7 +110,7 @@ function FictionPage() {
       </section>
 
       {/* FOOTER */}
-      <Footer />
+     
     </>
   );
 }

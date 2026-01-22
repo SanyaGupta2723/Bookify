@@ -1,12 +1,11 @@
 import React from "react";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+
 
 function Contact() {
   return (
     
     <section className="relative bg-black text-white">
-        <NavBar />
+        
 
       {/* ===== HERO IMAGE ===== */}
       <div
@@ -132,7 +131,7 @@ function Contact() {
       </div>
       <div className="w-full h-px bg-white/60 mt-20" />
       
-     <Footer />
+     
     </section>
     
   );
