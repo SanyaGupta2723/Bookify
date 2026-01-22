@@ -113,15 +113,23 @@ useEffect(() => {
           </Link>
 
           {/* 🌗 THEME */}
-          <label className="toggle relative btn btn-sm hover-neon px-3">
-            <input
-              type="checkbox"
-              checked={theme === "softlight"}
-              onChange={toggleTheme}
-            />
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
-          </label>
+          <div className="toggle-neon rounded-full">
+
+  <label className="toggle">
+    <input
+      type="checkbox"
+      checked={theme === "softlight"}
+      onChange={toggleTheme}
+    />
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+    </svg>
+    <svg viewBox="0 0 24 24">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  </label>
+</div>
+
 
           {/* 🔐 AUTH UI */}
           {user ? (

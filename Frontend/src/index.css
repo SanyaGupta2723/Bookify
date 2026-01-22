@@ -15,6 +15,7 @@ html, body, #root {
 /* ⬜ Square white outline (default) */
 .hover-neon {
   border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 9999px; /* pill shape */
   border-radius: 4px;          /* square look */
   transition: all 0.2s ease;
 }
