@@ -24,6 +24,7 @@ function Login() {
 
       // 2️⃣ Token save in localStorage
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       window.location.reload();
 
 
