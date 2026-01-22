@@ -127,7 +127,7 @@ useEffect(() => {
           {user ? (
             <div className="flex items-center gap-3">
               <span className="font-medium text-primary">
-                Hi, {user.username} 👋
+                Hi, {user.name} 👋
               </span>
               <button
                 onClick={handleLogout}
