@@ -83,9 +83,9 @@ useEffect(() => {
         <div className="hidden lg:flex flex-1 justify-center">
           <ul className="menu menu-horizontal gap-6">
             <li><Link to="/" className={`${menuItemClass} hover-neon px-4 py-2`}>Home</Link></li>
-            <li><Link to="/Fiction" className={menuItemClass}>Fiction</Link></li>
-            <li><Link to="/Nonfiction" className={menuItemClass}>Non-Fiction</Link></li>
-            <li><Link to="/Contact" className={menuItemClass}>Contact</Link></li>
+            <li><Link to="/Fiction" className={`${menuItemClass} hover-neon px-4 py-2`}>Fiction</Link></li>
+            <li><Link to="/Nonfiction" className={`${menuItemClass} hover-neon px-4 py-2`}>Non-Fiction</Link></li>
+            <li><Link to="/Contact" className={`${menuItemClass} hover-neon px-4 py-2`}>Contact</Link></li>
           </ul>
         </div>
 
@@ -93,7 +93,7 @@ useEffect(() => {
         <div className="hidden lg:flex items-center ml-auto gap-4">
 
           {/* 🛒 CART */}
-          <Link to="/cart" className="relative btn btn-sm">
+          <Link to="/cart" className="relative btn btn-sm hover-neon px-3">
             🛒
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 rounded-full">
@@ -103,7 +103,7 @@ useEffect(() => {
           </Link>
 
           {/* ❤️ WISHLIST */}
-          <Link to="/wishlist" className="relative btn btn-sm">
+          <Link to="/wishlist" className="relative btn btn-sm hover-neon px-3">
             ❤️
             {wishlistCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs px-2 rounded-full">
@@ -113,7 +113,7 @@ useEffect(() => {
           </Link>
 
           {/* 🌗 THEME */}
-          <label className="toggle">
+          <label className="toggle relative btn btn-sm hover-neon px-3">
             <input
               type="checkbox"
               checked={theme === "softlight"}
@@ -125,13 +125,13 @@ useEffect(() => {
 
           {/* 🔐 AUTH UI */}
           {user ? (
-            <div className="flex items-center gap-3">
-              <span className="font-medium text-primary">
+            <div className="flex items-center gap-3 ">
+              <span className="font-medium text-primary relative btn btn-sm hover-neon px-3">
                 Hi, {user.name} 👋
               </span>
               <button
                 onClick={handleLogout}
-                className="btn btn-sm btn-outline btn-error"
+                className="btn btn-sm btn-outline btn-error relative  hover-neon px-3"
               >
                 Logout
               </button>
