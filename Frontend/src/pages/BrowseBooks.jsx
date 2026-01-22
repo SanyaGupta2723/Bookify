@@ -28,7 +28,8 @@ function BrowseBooks() {
   // 🔍 SEARCH
   if (search) {
     filteredBooks = filteredBooks.filter((book) =>
-      book.title?.toLowerCase().includes(search.toLowerCase())
+      book.name?.toLowerCase().includes(search.toLowerCase())
+
     );
   }
 
@@ -103,9 +104,9 @@ function BrowseBooks() {
             </button>
 
             <button
-              onClick={() => setSelectedCategory("non-fiction")}
+              onClick={() => setSelectedCategory("Non-Fiction")}
               className={`block ${
-                selectedCategory === "non-fiction"
+                selectedCategory === "Non-Fiction"
                   ? "text-primary font-medium"
                   : ""
               }`}
