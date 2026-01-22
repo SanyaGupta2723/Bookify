@@ -27,6 +27,7 @@ export const register = async (req, res) => {
 };
 
 // LOGIN (STEP 3 wala code 👇)
+// LOGIN
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -47,7 +48,16 @@ export const login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.json({ token });
+    // ✅ IMPORTANT: SEND USER DATA ALSO
+    res.status(200).json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

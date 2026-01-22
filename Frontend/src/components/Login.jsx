@@ -24,7 +24,17 @@ function Login() {
 
       // 2️⃣ Token save in localStorage
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+if (res.data.user) {
+  localStorage.setItem(
+    "user",
+    JSON.stringify(res.data.user)
+  );
+} else {
+  console.error("User data missing from backend response");
+}
+
+
       window.location.reload();
 
 
