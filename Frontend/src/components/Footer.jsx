@@ -4,7 +4,7 @@ function Footer() {
   return (
     
     <div>
-      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 ">
+      <footer className="sticky footer sm:footer-horizontal bg-neutral text-neutral-content p-10 ">
   <aside>
     <svg
       width="50"
