@@ -115,6 +115,29 @@ function BookDetails() {
             <p className="text-sm opacity-70">
               Category: <span className="capitalize">{book.category}</span>
             </p>
+            {/* 📘 BOOK META DETAILS */}
+<div className="mt-6 p-5 rounded-xl border border-white/10 bg-white/5 space-y-3">
+  <h3 className="font-semibold text-lg">Book Details</h3>
+
+  <div className="text-sm opacity-80 space-y-2">
+    <p>
+      <span className="opacity-60">Author:</span> {book.author || "Unknown"}
+    </p>
+    <p>
+      <span className="opacity-60">Language:</span> English
+    </p>
+    <p>
+      <span className="opacity-60">Pages:</span> 208
+    </p>
+    <p>
+      <span className="opacity-60">Publisher:</span> HarperCollins
+    </p>
+    <p>
+      <span className="opacity-60">Rating:</span> ⭐ 4.7 / 5
+    </p>
+  </div>
+</div>
+
 
             {/* QUANTITY */}
             <div className="flex items-center gap-3">
@@ -242,7 +265,7 @@ function BookDetails() {
           </div>
         </div>
       </div>
-      vbra
+      
       {/* ⭐ REVIEWS SECTION */}
 <div className="max-w-6xl mx-auto px-5 mt-24">
   <h2 className="text-2xl font-bold mb-6">
