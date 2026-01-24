@@ -2,10 +2,14 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
+import Cards from "../components/Cards";
 
 function BookDetails() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const [allBooks, setAllBooks] = useState([]);
+const [quantity, setQuantity] = useState(1);
+
 
   // 🔹 Context se count setters
   const { setCartCount, setWishlistCount } = useContext(CartContext);
@@ -77,10 +81,21 @@ function BookDetails() {
     };
     fetchBook();
   }, [id]);
+  const recommendedBooks = allBooks.filter(
+  (b) => b.category === book?.category && b._id !== book._id
+);
+
 
   if (!book) {
     return <p className="text-center mt-20">Loading...</p>;
   }
+  useEffect(() => {
+  axios
+    .get("http://localhost:5000/books")
+    .then((res) => setAllBooks(res.data))
+    .catch((err) => console.log(err));
+}, []);
+
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-16">
@@ -121,6 +136,30 @@ function BookDetails() {
             >
               Add to Cart
             </button>
+            {/* 🔢 QUANTITY + BUY */}
+<div className="mt-6 space-y-4">
+  <div className="flex items-center gap-3">
+    <span className="text-sm opacity-70">Quantity</span>
+    <select
+      value={quantity}
+      onChange={(e) => setQuantity(Number(e.target.value))}
+      className="select select-bordered select-sm w-20"
+    >
+      {[1, 2, 3, 4, 5].map((q) => (
+        <option key={q} value={q}>{q}</option>
+      ))}
+    </select>
+  </div>
+
+  <button className="btn btn-success px-10">
+    Buy Now
+  </button>
+
+  <p className="text-sm text-success">
+    ✔ In stock · Delivery in 3–5 days
+  </p>
+</div>
+
 
             <button
               onClick={addToWishlist}
@@ -128,6 +167,12 @@ function BookDetails() {
             >
               ❤️ Add to Wishlist
             </button>
+            <div className="flex gap-6 text-sm opacity-80 pt-4">
+  <span>🚚 Fast Delivery</span>
+  <span>🔒 Secure Payment</span>
+  <span>↩ Easy Returns</span>
+</div>
+
           </div>
         </div>
 
