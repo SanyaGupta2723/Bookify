@@ -133,22 +133,54 @@ function BookDetails() {
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap gap-4 pt-2">
               <button
-                onClick={handleAddToCart}
-                className="btn btn-primary px-8"
-              >
-                Add to Cart
-              </button>
+  onClick={handleAddToCart}
+  className="
+    btn 
+    bg-transparent
+    border-2 border-primary
+    text-primary
+    px-8
+    hover:bg-primary/10
+    hover:shadow-[0_0_12px_rgba(99,102,241,0.5)]
+    transition-all
+  "
+>
+  Add to Cart
+</button>
 
-              <button className="btn btn-success px-8">
-                Buy Now
-              </button>
 
               <button
-                onClick={addToWishlist}
-                className="btn btn-outline px-8"
-              >
-                ❤️ Wishlist
-              </button>
+  className="
+    btn
+    bg-primary
+    text-white
+    px-8
+    shadow-[0_0_10px_rgba(99,102,241,0.6)]
+    hover:shadow-[0_0_18px_rgba(99,102,241,0.9)]
+    hover:scale-[1.03]
+    transition-all
+  "
+>
+  Buy Now
+</button>
+
+
+              <button
+  onClick={addToWishlist}
+  className="
+    btn
+    bg-transparent
+    border-2 border-pink-500
+    text-pink-400
+    px-8
+    hover:bg-pink-500/10
+    hover:shadow-[0_0_12px_rgba(236,72,153,0.6)]
+    transition-all
+  "
+>
+  ❤️ Wishlist
+</button>
+
             </div>
 
             {/* TRUST INFO */}
