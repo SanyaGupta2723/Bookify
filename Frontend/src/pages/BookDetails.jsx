@@ -6,13 +6,36 @@ import Cards from "../components/Cards";
 
 function BookDetails() {
   const { id } = useParams();
+
   const [book, setBook] = useState(null);
   const [allBooks, setAllBooks] = useState([]);
-const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
-
-  // 🔹 Context se count setters
   const { setCartCount, setWishlistCount } = useContext(CartContext);
+
+  // 📡 FETCH SINGLE BOOK
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/books/${id}`)
+      .then((res) => setBook(res.data))
+      .catch((err) => console.log(err));
+  }, [id]);
+
+  // 📚 FETCH ALL BOOKS (FOR RECOMMENDED)
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/books")
+      .then((res) => setAllBooks(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  if (!book) {
+    return <p className="text-center mt-20">Loading...</p>;
+  }
+
+  const recommendedBooks = allBooks.filter(
+    (b) => b.category === book.category && b._id !== book._id
+  );
 
   // 🛒 ADD TO CART
   const handleAddToCart = () => {
@@ -30,12 +53,10 @@ const [quantity, setQuantity] = useState(1);
 
     const updatedCart = [
       ...existingCart,
-      { ...book, quantity: 1 },
+      { ...book, quantity },
     ];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-    // 🔥 REAL-TIME NAVBAR UPDATE
     setCartCount(updatedCart.length);
 
     alert("Book added to cart 🛒");
@@ -56,128 +77,105 @@ const [quantity, setQuantity] = useState(1);
     }
 
     const updatedWishlist = [...existingWishlist, book];
-    localStorage.setItem(
-      "wishlist",
-      JSON.stringify(updatedWishlist)
-    );
-
-    // 🔥 REAL-TIME NAVBAR UPDATE
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
     setWishlistCount(updatedWishlist.length);
 
     alert("Added to wishlist ❤️");
   };
 
-  // 📡 FETCH BOOK
-  useEffect(() => {
-    const fetchBook = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:5000/books/${id}`
-        );
-        setBook(res.data);
-      } catch (error) {
-        console.log("Error fetching book", error);
-      }
-    };
-    fetchBook();
-  }, [id]);
-  const recommendedBooks = allBooks.filter(
-  (b) => b.category === book?.category && b._id !== book._id
-);
-
-
-  if (!book) {
-    return <p className="text-center mt-20">Loading...</p>;
-  }
-  useEffect(() => {
-  axios
-    .get("http://localhost:5000/books")
-    .then((res) => setAllBooks(res.data))
-    .catch((err) => console.log(err));
-}, []);
-
-
   return (
-    <div className="max-w-6xl mx-auto px-5 py-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <>
+      {/* MAIN DETAILS */}
+      <div className="max-w-6xl mx-auto px-5 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-        {/* 🖼️ LEFT IMAGE */}
-        <div className="flex justify-center">
-          <img
-            src={book.image}
-            alt={book.name}
-            className="w-72 md:w-96 rounded-xl shadow-lg"
-          />
-        </div>
+          {/* IMAGE */}
+          <div className="flex justify-center">
+            <img
+              src={book.image}
+              alt={book.name}
+              className="w-72 md:w-96 rounded-xl shadow-lg"
+            />
+          </div>
 
-        {/* 📄 RIGHT CONTENT */}
-        <div className="space-y-5">
-          <h1 className="text-3xl md:text-4xl font-bold">
-            {book.name}
-          </h1>
+          {/* CONTENT */}
+          <div className="space-y-6">
+            <h1 className="text-3xl md:text-4xl font-bold">
+              {book.name}
+            </h1>
 
-          <p className="text-2xl font-semibold text-primary">
-            ₹{book.price}
-          </p>
+            <p className="text-2xl font-semibold text-primary">
+              ₹{book.price}
+            </p>
 
-          <p className="text-base-content/80 leading-relaxed">
-            {book.description}
-          </p>
+            <p className="text-base-content/80 leading-relaxed">
+              {book.description}
+            </p>
 
-          <p className="text-sm text-base-content/60">
-            Category:{" "}
-            <span className="capitalize">{book.category}</span>
-          </p>
+            <p className="text-sm opacity-70">
+              Category: <span className="capitalize">{book.category}</span>
+            </p>
 
-          <div className="flex gap-4 pt-4">
-            <button
-              onClick={handleAddToCart}
-              className="btn btn-primary px-8"
-            >
-              Add to Cart
-            </button>
-            {/* 🔢 QUANTITY + BUY */}
-<div className="mt-6 space-y-4">
-  <div className="flex items-center gap-3">
-    <span className="text-sm opacity-70">Quantity</span>
-    <select
-      value={quantity}
-      onChange={(e) => setQuantity(Number(e.target.value))}
-      className="select select-bordered select-sm w-20"
-    >
-      {[1, 2, 3, 4, 5].map((q) => (
-        <option key={q} value={q}>{q}</option>
-      ))}
-    </select>
-  </div>
+            {/* QUANTITY */}
+            <div className="flex items-center gap-3">
+              <span className="text-sm opacity-70">Quantity</span>
+              <select
+                value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                className="select select-bordered select-sm w-20"
+              >
+                {[1, 2, 3, 4, 5].map((q) => (
+                  <option key={q} value={q}>{q}</option>
+                ))}
+              </select>
+            </div>
 
-  <button className="btn btn-success px-10">
-    Buy Now
-  </button>
+            {/* ACTION BUTTONS */}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <button
+                onClick={handleAddToCart}
+                className="btn btn-primary px-8"
+              >
+                Add to Cart
+              </button>
 
-  <p className="text-sm text-success">
-    ✔ In stock · Delivery in 3–5 days
-  </p>
-</div>
+              <button className="btn btn-success px-8">
+                Buy Now
+              </button>
 
+              <button
+                onClick={addToWishlist}
+                className="btn btn-outline px-8"
+              >
+                ❤️ Wishlist
+              </button>
+            </div>
 
-            <button
-              onClick={addToWishlist}
-              className="btn btn-outline px-8"
-            >
-              ❤️ Add to Wishlist
-            </button>
+            {/* TRUST INFO */}
             <div className="flex gap-6 text-sm opacity-80 pt-4">
-  <span>🚚 Fast Delivery</span>
-  <span>🔒 Secure Payment</span>
-  <span>↩ Easy Returns</span>
-</div>
-
+              <span>🚚 Fast Delivery</span>
+              <span>🔒 Secure Payment</span>
+              <span>↩ Easy Returns</span>
+            </div>
           </div>
         </div>
-
       </div>
-    </div>
+
+      {/* ⭐ RECOMMENDED BOOKS */}
+      {recommendedBooks.length > 0 && (
+        <div className="max-w-6xl mx-auto px-5 pb-20">
+          <h2 className="text-2xl font-bold mb-6">
+            You may also like
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {recommendedBooks.slice(0, 4).map((item) => (
+              <Cards key={item._id} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
