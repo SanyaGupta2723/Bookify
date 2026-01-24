@@ -184,14 +184,109 @@ function BookDetails() {
             </div>
 
             {/* TRUST INFO */}
-            <div className="flex gap-6 text-sm opacity-80 pt-4">
-              <span>🚚 Fast Delivery</span>
-              <span>🔒 Secure Payment</span>
-              <span>↩ Easy Returns</span>
-            </div>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+  {/* Fast Delivery */}
+  <div className="
+    flex items-center gap-3 
+    p-4 rounded-lg 
+    border border-white/10 
+    bg-white/5
+    hover:border-primary/50
+    hover:shadow-[0_0_12px_rgba(99,102,241,0.4)]
+    transition
+  ">
+    <span className="text-xl">🚚</span>
+    <div>
+      <p className="font-medium">Fast Delivery</p>
+      <p className="text-sm opacity-70">3–5 business days</p>
+    </div>
+  </div>
+
+  {/* Secure Payment */}
+  <div className="
+    flex items-center gap-3 
+    p-4 rounded-lg 
+    border border-white/10 
+    bg-white/5
+    hover:border-green-400/50
+    hover:shadow-[0_0_12px_rgba(34,197,94,0.4)]
+    transition
+  ">
+    <span className="text-xl">🔒</span>
+    <div>
+      <p className="font-medium">Secure Payment</p>
+      <p className="text-sm opacity-70">100% safe checkout</p>
+    </div>
+  </div>
+
+  {/* Easy Returns */}
+  <div className="
+    flex items-center gap-3 
+    p-4 rounded-lg 
+    border border-white/10 
+    bg-white/5
+    hover:border-pink-400/50
+    hover:shadow-[0_0_12px_rgba(236,72,153,0.4)]
+    transition
+  ">
+    <span className="text-xl">↩️</span>
+    <div>
+      <p className="font-medium">Easy Returns</p>
+      <p className="text-sm opacity-70">7-day return policy</p>
+    </div>
+  </div>
+
+</div>
+
           </div>
         </div>
       </div>
+      vbra
+      {/* ⭐ REVIEWS SECTION */}
+<div className="max-w-6xl mx-auto px-5 mt-24">
+  <h2 className="text-2xl font-bold mb-6">
+    Customer Reviews
+  </h2>
+
+  <div className="space-y-6">
+
+    {/* Review 1 */}
+    <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+      <div className="flex items-center gap-3 mb-2">
+        <span className="font-semibold">Aarav</span>
+        <span className="text-yellow-400">⭐⭐⭐⭐⭐</span>
+      </div>
+      <p className="text-sm text-base-content/80">
+        Absolutely loved this book. The story is inspiring and beautifully written.
+      </p>
+    </div>
+
+    {/* Review 2 */}
+    <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+      <div className="flex items-center gap-3 mb-2">
+        <span className="font-semibold">Sneha</span>
+        <span className="text-yellow-400">⭐⭐⭐⭐</span>
+      </div>
+      <p className="text-sm text-base-content/80">
+        A must-read for anyone who enjoys philosophical and motivational books.
+      </p>
+    </div>
+
+    {/* Review 3 */}
+    <div className="p-5 rounded-xl border border-white/10 bg-white/5">
+      <div className="flex items-center gap-3 mb-2">
+        <span className="font-semibold">Rohit</span>
+        <span className="text-yellow-400">⭐⭐⭐⭐⭐</span>
+      </div>
+      <p className="text-sm text-base-content/80">
+        One of my favorite books of all time. Simple yet very powerful.
+      </p>
+    </div>
+
+  </div>
+</div>
+
 
       {/* ⭐ RECOMMENDED BOOKS */}
       {recommendedBooks.length > 0 && (
