@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 function Checkout() {
   const navigate = useNavigate();
-  const [paymentMethod, setPaymentMethod] = useState("cod");
+ 
+  const location = useLocation();
+const paymentMethod = location.state?.paymentMethod || "cod";
+<p className="mb-6 text-lg">
+  Payment Method: <b>{paymentMethod.toUpperCase()}</b>
+</p>
+
+
 
   const handlePlaceOrder = () => {
     alert(`Payment Successful via ${paymentMethod.toUpperCase()} 🎉`);
