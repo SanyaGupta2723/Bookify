@@ -143,8 +143,7 @@ function Cart() {
       )}
     </div>
   );
-}
-{/* 💳 PAYMENT METHOD */}
+  {/* 💳 PAYMENT METHOD */}
 <div className="mt-8 max-w-md">
   <h2 className="text-lg font-semibold mb-4">
     Select Payment Method
@@ -187,6 +186,8 @@ function Cart() {
 
   </div>
 </div>
+
+}
 
 
 export default Cart;
