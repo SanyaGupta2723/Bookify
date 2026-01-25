@@ -123,9 +123,13 @@ function Cart() {
               Total: ₹{totalPrice}
             </h2>
 
-            <button className="btn btn-primary px-10">
-              Checkout
-            </button>
+            <button
+  onClick={() => navigate("/checkout")}
+  className="btn btn-primary px-10"
+>
+  Proceed to Checkout
+</button>
+
           </div>
         </>
       )}
