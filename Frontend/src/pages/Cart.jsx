@@ -69,7 +69,9 @@ function Cart() {
             Browse Books
           </Link>
         </div>
+        
       ) : (
+        
         <>
           {/* 🟢 CART ITEMS */}
           <div className="space-y-6">
