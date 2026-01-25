@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
+
 function Cart() {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
+  const [paymentMethod, setPaymentMethod] = useState("cod");
+
 
   // 🔹 Load cart from localStorage
   useEffect(() => {
@@ -127,11 +130,12 @@ function Cart() {
             </h2>
 
             <button
-  onClick={() => navigate("/checkout")}
-  className="btn btn-primary px-10"
+  onClick={() => navigate("/checkout", { state: { paymentMethod } })}
+  className="btn btn-success px-10 mt-6"
 >
-  Proceed to Checkout
+  Pay Now
 </button>
+
 
           </div>
         </>
@@ -139,5 +143,49 @@ function Cart() {
     </div>
   );
 }
+{/* 💳 PAYMENT METHOD */}
+<div className="mt-8 max-w-md">
+  <h2 className="text-lg font-semibold mb-4">
+    Select Payment Method
+  </h2>
+
+  <div className="space-y-3">
+
+    <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
+      <input
+        type="radio"
+        name="payment"
+        className="radio radio-primary"
+        checked={paymentMethod === "cod"}
+        onChange={() => setPaymentMethod("cod")}
+      />
+      💵 Cash on Delivery
+    </label>
+
+    <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
+      <input
+        type="radio"
+        name="payment"
+        className="radio radio-primary"
+        checked={paymentMethod === "upi"}
+        onChange={() => setPaymentMethod("upi")}
+      />
+      📱 UPI (GPay / PhonePe)
+    </label>
+
+    <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
+      <input
+        type="radio"
+        name="payment"
+        className="radio radio-primary"
+        checked={paymentMethod === "card"}
+        onChange={() => setPaymentMethod("card")}
+      />
+      💳 Debit / Credit Card
+    </label>
+
+  </div>
+</div>
+
 
 export default Cart;
