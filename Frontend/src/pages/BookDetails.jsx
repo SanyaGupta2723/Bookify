@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
 import Cards from "../components/Cards";
+import { useNavigate } from "react-router-dom";
+
 
 function BookDetails() {
   const { id } = useParams();
@@ -10,6 +12,8 @@ function BookDetails() {
   const [book, setBook] = useState(null);
   const [allBooks, setAllBooks] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
+
 
   const { setCartCount, setWishlistCount } = useContext(CartContext);
 
@@ -61,6 +65,7 @@ function BookDetails() {
 
     alert("Book added to cart 🛒");
   };
+  
 
   // ❤️ ADD TO WISHLIST
   const addToWishlist = () => {
@@ -82,6 +87,38 @@ function BookDetails() {
 
     alert("Added to wishlist ❤️");
   };
+// ⚡ BUY NOW
+const handleBuyNow = () => {
+  const existingCart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+  const alreadyInCart = existingCart.find(
+    (item) => item._id === book._id
+  );
+
+  let updatedCart;
+
+  if (alreadyInCart) {
+    updatedCart = existingCart.map((item) =>
+      item._id === book._id
+        ? { ...item, quantity }
+        : item
+    );
+  } else {
+    updatedCart = [
+      ...existingCart,
+      { ...book, quantity },
+    ];
+  }
+
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+  // 🔥 Navbar count update
+  setCartCount(updatedCart.length);
+
+  // 🚀 Go to cart page
+  navigate("/cart");
+};
 
   return (
     <>
@@ -183,6 +220,7 @@ function BookDetails() {
     hover:scale-[1.03]
     transition-all
   "
+  onClick={handleBuyNow}
 >
   Buy Now
 </button>
