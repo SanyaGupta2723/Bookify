@@ -12,6 +12,8 @@ import Footer from './components/Footer'
 import BookDetails from "./pages/BookDetails";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
+import Checkout from "./pages/Checkout";
+
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="/book/:id" element={<BookDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
 
