@@ -59,20 +59,21 @@ function Cart() {
 
   // ✅ PAY BUTTON HANDLER
   const handlePayNow = () => {
-    if (paymentMethod === "cod") {
-      navigate("/order-success", {
-        state: {
-          method: "cod",
-          total: payableAmount,
-        },
-      });
-      localStorage.removeItem("cart");
-    } else {
-      navigate("/checkout", {
-        state: { paymentMethod, total: payableAmount },
-      });
-    }
-  };
+  if (paymentMethod === "cod") {
+    navigate("/order-tracking", {
+      state: {
+        total: payableAmount,
+        items: cart,
+      },
+    });
+    localStorage.removeItem("cart");
+  } else {
+    navigate("/checkout", {
+      state: { paymentMethod, total: payableAmount },
+    });
+  }
+};
+
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-14 min-h-screen">
