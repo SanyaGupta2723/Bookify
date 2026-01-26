@@ -14,21 +14,47 @@ function OrderTracking() {
       </p>
 
       {/* 📦 ORDER SUMMARY */}
-      <div className="border border-white/10 rounded-xl p-5 bg-white/5 mb-8">
-        <h2 className="font-semibold mb-3">Order Summary</h2>
+     {/* 🧾 PRICE BREAKUP */}
+<div className="border border-white/10 rounded-xl p-5 bg-white/5 mb-8">
+  <h2 className="font-semibold mb-4 text-lg">Order Summary</h2>
 
-        {state?.items?.map((item) => (
-          <div key={item._id} className="flex justify-between text-sm mb-2">
-            <span>{item.name} × {item.quantity}</span>
-            <span>₹{item.price * item.quantity}</span>
-          </div>
-        ))}
+  {state?.items?.map((item) => (
+    <div key={item._id} className="flex justify-between text-sm mb-2">
+      <span>{item.name} × {item.quantity}</span>
+      <span>₹{item.price * item.quantity}</span>
+    </div>
+  ))}
 
-        <div className="border-t mt-3 pt-3 flex justify-between font-semibold">
-          <span>Total Payable</span>
-          <span>₹{state?.total}</span>
-        </div>
-      </div>
+  <div className="border-t border-white/10 my-3"></div>
+
+  <div className="flex justify-between text-sm opacity-80">
+    <span>Subtotal</span>
+    <span>₹{subtotal}</span>
+  </div>
+
+  <div className="flex justify-between text-sm opacity-80">
+    <span>GST (5%)</span>
+    <span>₹{gstAmount}</span>
+  </div>
+
+  <div className="flex justify-between text-sm opacity-80">
+    <span>Delivery</span>
+    <span>{deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`}</span>
+  </div>
+
+  {discount > 0 && (
+    <div className="flex justify-between text-sm text-success">
+      <span>Discount</span>
+      <span>-₹{discount}</span>
+    </div>
+  )}
+
+  <div className="border-t border-white/10 pt-3 mt-3 flex justify-between font-semibold text-lg">
+    <span>Total Payable</span>
+    <span className="text-primary">₹{totalPayable}</span>
+  </div>
+</div>
+
 
       {/* 🚚 SHIPPING INFO */}
       <div className="grid sm:grid-cols-2 gap-6">
