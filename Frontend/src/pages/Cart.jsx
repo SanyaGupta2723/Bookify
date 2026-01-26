@@ -1,15 +1,10 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cart() {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("cod");
-
 
   // 🔹 Load cart from localStorage
   useEffect(() => {
@@ -55,11 +50,19 @@ function Cart() {
     0
   );
 
+  // 📄 INVOICE CALCULATION
+  const gstRate = 0.05;
+  const gstAmount = Math.round(totalPrice * gstRate);
+  const deliveryFee = totalPrice > 499 ? 0 : 40;
+  const discount = totalPrice > 999 ? 100 : 0;
+
+  const payableAmount =
+    totalPrice + gstAmount + deliveryFee - discount;
+
   return (
     <div className="max-w-6xl mx-auto px-5 py-14 min-h-screen">
       <h1 className="text-3xl font-bold mb-8">Your Cart 🛒</h1>
 
-      {/* 🟡 EMPTY CART */}
       {cart.length === 0 ? (
         <div className="text-center mt-20">
           <p className="text-lg mb-4 text-base-content/70">
@@ -69,9 +72,7 @@ function Cart() {
             Browse Books
           </Link>
         </div>
-        
       ) : (
-        
         <>
           {/* 🟢 CART ITEMS */}
           <div className="space-y-6">
@@ -94,7 +95,6 @@ function Cart() {
                     ₹{item.price}
                   </p>
 
-                  {/* ➕➖ Quantity */}
                   <div className="flex items-center gap-3 mt-3">
                     <button
                       onClick={() => decreaseQty(item._id)}
@@ -126,26 +126,39 @@ function Cart() {
             ))}
           </div>
 
-          {/* 🔥 TOTAL SECTION */}
-          <div className="mt-10 flex flex-col sm:flex-row justify-between items-center border-t pt-6 gap-4">
-            <h2 className="text-xl font-semibold">
-              Total: ₹{totalPrice}
-            </h2>
+          {/* 🧾 PRICE BREAKUP */}
+          <div className="mt-10 max-w-md border border-white/10 rounded-xl p-5 bg-white/5 space-y-3">
+            <h3 className="text-lg font-semibold">Price Details</h3>
 
-            <button
-  onClick={() => navigate("/checkout", { state: { paymentMethod } })}
-  className="btn btn-success px-10 mt-6"
->
-  Pay Now
-</button>
+            <div className="flex justify-between text-sm">
+              <span>Subtotal</span>
+              <span>₹{totalPrice}</span>
+            </div>
 
+            <div className="flex justify-between text-sm">
+              <span>GST (5%)</span>
+              <span>₹{gstAmount}</span>
+            </div>
 
+            <div className="flex justify-between text-sm">
+              <span>Delivery</span>
+              <span>{deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`}</span>
+            </div>
+
+            {discount > 0 && (
+              <div className="flex justify-between text-sm text-success">
+                <span>Discount</span>
+                <span>-₹{discount}</span>
+              </div>
+            )}
+
+            <div className="border-t pt-3 flex justify-between font-semibold">
+              <span>Total Payable</span>
+              <span>₹{payableAmount}</span>
+            </div>
           </div>
-        </>
-      )}
-    </div>
-  );
-  {/* 💳 PAYMENT METHOD */}
+
+          {/* 💳 PAYMENT METHOD */}
 <div className="mt-8 max-w-md">
   <h2 className="text-lg font-semibold mb-4">
     Select Payment Method
@@ -161,7 +174,11 @@ function Cart() {
         checked={paymentMethod === "cod"}
         onChange={() => setPaymentMethod("cod")}
       />
-      💵 Cash on Delivery
+      <span className="text-xl">💵</span>
+      <div>
+        <p className="font-medium">Cash on Delivery</p>
+        <p className="text-xs opacity-60">Pay when book arrives</p>
+      </div>
     </label>
 
     <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
@@ -172,7 +189,11 @@ function Cart() {
         checked={paymentMethod === "upi"}
         onChange={() => setPaymentMethod("upi")}
       />
-      📱 UPI (GPay / PhonePe)
+      <span className="text-xl">📱</span>
+      <div>
+        <p className="font-medium">UPI</p>
+        <p className="text-xs opacity-60">GPay • PhonePe • Paytm</p>
+      </div>
     </label>
 
     <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
@@ -183,13 +204,32 @@ function Cart() {
         checked={paymentMethod === "card"}
         onChange={() => setPaymentMethod("card")}
       />
-      💳 Debit / Credit Card
+      <span className="text-xl">💳</span>
+      <div>
+        <p className="font-medium">Debit / Credit Card</p>
+        <p className="text-xs opacity-60">Visa • MasterCard • RuPay</p>
+      </div>
     </label>
 
   </div>
 </div>
 
-}
 
+          {/* 🔥 PAY */}
+          <button
+            onClick={() =>
+              navigate("/checkout", {
+                state: { paymentMethod, payableAmount },
+              })
+            }
+            className="btn btn-success px-10 mt-8"
+          >
+            Pay ₹{payableAmount}
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default Cart;
