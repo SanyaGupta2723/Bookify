@@ -3,29 +3,28 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Cart() {
   const [cart, setCart] = useState([]);
-  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("cod");
+  const navigate = useNavigate();
 
-  // 🔹 Load cart from localStorage
+  // 🔹 Load cart
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
   }, []);
 
-  // ➕ Increase quantity
+  // ➕➖ Quantity
   const increaseQty = (id) => {
-    const updatedCart = cart.map((item) =>
+    const updated = cart.map((item) =>
       item._id === id
         ? { ...item, quantity: (item.quantity || 1) + 1 }
         : item
     );
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCart(updated);
+    localStorage.setItem("cart", JSON.stringify(updated));
   };
 
-  // ➖ Decrease quantity
   const decreaseQty = (id) => {
-    const updatedCart = cart
+    const updated = cart
       .map((item) =>
         item._id === id
           ? { ...item, quantity: (item.quantity || 1) - 1 }
@@ -33,18 +32,17 @@ function Cart() {
       )
       .filter((item) => item.quantity > 0);
 
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCart(updated);
+    localStorage.setItem("cart", JSON.stringify(updated));
   };
 
-  // ❌ Remove item
   const removeFromCart = (id) => {
-    const updatedCart = cart.filter((item) => item._id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    const updated = cart.filter((item) => item._id !== id);
+    setCart(updated);
+    localStorage.setItem("cart", JSON.stringify(updated));
   };
 
-  // 💰 Total price
+  // 💰 TOTAL
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * (item.quantity || 1),
     0
@@ -59,15 +57,30 @@ function Cart() {
   const payableAmount =
     totalPrice + gstAmount + deliveryFee - discount;
 
+  // ✅ PAY BUTTON HANDLER
+  const handlePayNow = () => {
+    if (paymentMethod === "cod") {
+      navigate("/order-success", {
+        state: {
+          method: "cod",
+          total: payableAmount,
+        },
+      });
+      localStorage.removeItem("cart");
+    } else {
+      navigate("/checkout", {
+        state: { paymentMethod, total: payableAmount },
+      });
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-5 py-14 min-h-screen">
       <h1 className="text-3xl font-bold mb-8">Your Cart 🛒</h1>
 
       {cart.length === 0 ? (
         <div className="text-center mt-20">
-          <p className="text-lg mb-4 text-base-content/70">
-            Your cart is empty.
-          </p>
+          <p className="text-lg mb-4 opacity-70">Your cart is empty.</p>
           <Link to="/browsebooks" className="btn btn-primary">
             Browse Books
           </Link>
@@ -81,38 +94,16 @@ function Cart() {
                 key={item._id}
                 className="flex flex-col sm:flex-row items-center gap-6 border p-4 rounded-lg"
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-28 rounded-md"
-                />
+                <img src={item.image} alt={item.name} className="w-28 rounded-md" />
 
                 <div className="flex-1">
-                  <h2 className="font-semibold text-lg">
-                    {item.name}
-                  </h2>
-                  <p className="text-primary font-medium">
-                    ₹{item.price}
-                  </p>
+                  <h2 className="font-semibold text-lg">{item.name}</h2>
+                  <p className="text-primary">₹{item.price}</p>
 
                   <div className="flex items-center gap-3 mt-3">
-                    <button
-                      onClick={() => decreaseQty(item._id)}
-                      className="btn btn-xs"
-                    >
-                      −
-                    </button>
-
-                    <span className="font-medium">
-                      {item.quantity || 1}
-                    </span>
-
-                    <button
-                      onClick={() => increaseQty(item._id)}
-                      className="btn btn-xs"
-                    >
-                      +
-                    </button>
+                    <button onClick={() => decreaseQty(item._id)} className="btn btn-xs">−</button>
+                    <span>{item.quantity || 1}</span>
+                    <button onClick={() => increaseQty(item._id)} className="btn btn-xs">+</button>
                   </div>
                 </div>
 
@@ -126,9 +117,9 @@ function Cart() {
             ))}
           </div>
 
-          {/* 🧾 PRICE BREAKUP */}
+          {/* 🧾 PRICE DETAILS */}
           <div className="mt-10 max-w-md border border-white/10 rounded-xl p-5 bg-white/5 space-y-3">
-            <h3 className="text-lg font-semibold">Price Details</h3>
+            <h3 className="font-semibold">Price Details</h3>
 
             <div className="flex justify-between text-sm">
               <span>Subtotal</span>
@@ -159,72 +150,39 @@ function Cart() {
           </div>
 
           {/* 💳 PAYMENT METHOD */}
-<div className="mt-8 max-w-md">
-  <h2 className="text-lg font-semibold mb-4">
-    Select Payment Method
-  </h2>
+          <div className="mt-8 max-w-md space-y-3">
+            <h2 className="font-semibold">Select Payment Method</h2>
 
-  <div className="space-y-3">
+            {[
+              { id: "cod", icon: "💵", title: "Cash on Delivery", sub: "Pay when book arrives" },
+              { id: "upi", icon: "📱", title: "UPI", sub: "GPay • PhonePe • Paytm" },
+              { id: "card", icon: "💳", title: "Card", sub: "Visa • MasterCard • RuPay" },
+            ].map((p) => (
+              <label key={p.id} className="flex items-center gap-4 p-4 border rounded-lg cursor-pointer">
+                <input
+                  type="radio"
+                  name="payment"
+                  checked={paymentMethod === p.id}
+                  onChange={() => setPaymentMethod(p.id)}
+                  className="radio radio-primary"
+                />
+                <span className="text-xl">{p.icon}</span>
+                <div>
+                  <p className="font-medium">{p.title}</p>
+                  <p className="text-xs opacity-60">{p.sub}</p>
+                </div>
+              </label>
+            ))}
+          </div>
 
-    <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
-      <input
-        type="radio"
-        name="payment"
-        className="radio radio-primary"
-        checked={paymentMethod === "cod"}
-        onChange={() => setPaymentMethod("cod")}
-      />
-      <span className="text-xl">💵</span>
-      <div>
-        <p className="font-medium">Cash on Delivery</p>
-        <p className="text-xs opacity-60">Pay when book arrives</p>
-      </div>
-    </label>
-
-    <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
-      <input
-        type="radio"
-        name="payment"
-        className="radio radio-primary"
-        checked={paymentMethod === "upi"}
-        onChange={() => setPaymentMethod("upi")}
-      />
-      <span className="text-xl">📱</span>
-      <div>
-        <p className="font-medium">UPI</p>
-        <p className="text-xs opacity-60">GPay • PhonePe • Paytm</p>
-      </div>
-    </label>
-
-    <label className="flex items-center gap-4 p-4 rounded-lg border border-white/20 cursor-pointer hover:border-primary transition">
-      <input
-        type="radio"
-        name="payment"
-        className="radio radio-primary"
-        checked={paymentMethod === "card"}
-        onChange={() => setPaymentMethod("card")}
-      />
-      <span className="text-xl">💳</span>
-      <div>
-        <p className="font-medium">Debit / Credit Card</p>
-        <p className="text-xs opacity-60">Visa • MasterCard • RuPay</p>
-      </div>
-    </label>
-
-  </div>
-</div>
-
-
-          {/* 🔥 PAY */}
+          {/* 🔥 PAY BUTTON */}
           <button
-            onClick={() =>
-              navigate("/checkout", {
-                state: { paymentMethod, payableAmount },
-              })
-            }
+            onClick={handlePayNow}
             className="btn btn-success px-10 mt-8"
           >
-            Pay ₹{payableAmount}
+            {paymentMethod === "cod"
+              ? "Place Order"
+              : `Pay ₹${payableAmount}`}
           </button>
         </>
       )}
