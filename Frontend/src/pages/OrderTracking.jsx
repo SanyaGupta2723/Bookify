@@ -3,6 +3,22 @@ import { useLocation } from "react-router-dom";
 function OrderTracking() {
   const { state } = useLocation();
 
+  // ✅ ADD THESE (FIX)
+  const items = state?.items || [];
+
+  const subtotal = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  const gstRate = 0.05;
+  const gstAmount = Math.round(subtotal * gstRate);
+  const deliveryFee = subtotal > 499 ? 0 : 40;
+  const discount = subtotal > 999 ? 100 : 0;
+
+  const totalPayable =
+    subtotal + gstAmount + deliveryFee - discount;
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
       <h1 className="text-3xl font-bold mb-6 text-success">
@@ -13,52 +29,49 @@ function OrderTracking() {
         Thank you for your order. Your books are on the way 🚚
       </p>
 
-      {/* 📦 ORDER SUMMARY */}
-     {/* 🧾 PRICE BREAKUP */}
-<div className="border border-white/10 rounded-xl p-5 bg-white/5 mb-8">
-  <h2 className="font-semibold mb-4 text-lg">Order Summary</h2>
+      {/* 🧾 PRICE BREAKUP */}
+      <div className="border border-white/10 rounded-xl p-5 bg-white/5 mb-8">
+        <h2 className="font-semibold mb-4 text-lg">Order Summary</h2>
 
-  {state?.items?.map((item) => (
-    <div key={item._id} className="flex justify-between text-sm mb-2">
-      <span>{item.name} × {item.quantity}</span>
-      <span>₹{item.price * item.quantity}</span>
-    </div>
-  ))}
+        {items.map((item) => (
+          <div key={item._id} className="flex justify-between text-sm mb-2">
+            <span>{item.name} × {item.quantity}</span>
+            <span>₹{item.price * item.quantity}</span>
+          </div>
+        ))}
 
-  <div className="border-t border-white/10 my-3"></div>
+        <div className="border-t border-white/10 my-3"></div>
 
-  <div className="flex justify-between text-sm opacity-80">
-    <span>Subtotal</span>
-    <span>₹{subtotal}</span>
-  </div>
+        <div className="flex justify-between text-sm opacity-80">
+          <span>Subtotal</span>
+          <span>₹{subtotal}</span>
+        </div>
 
-  <div className="flex justify-between text-sm opacity-80">
-    <span>GST (5%)</span>
-    <span>₹{gstAmount}</span>
-  </div>
+        <div className="flex justify-between text-sm opacity-80">
+          <span>GST (5%)</span>
+          <span>₹{gstAmount}</span>
+        </div>
 
-  <div className="flex justify-between text-sm opacity-80">
-    <span>Delivery</span>
-    <span>{deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`}</span>
-  </div>
+        <div className="flex justify-between text-sm opacity-80">
+          <span>Delivery</span>
+          <span>{deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`}</span>
+        </div>
 
-  {discount > 0 && (
-    <div className="flex justify-between text-sm text-success">
-      <span>Discount</span>
-      <span>-₹{discount}</span>
-    </div>
-  )}
+        {discount > 0 && (
+          <div className="flex justify-between text-sm text-success">
+            <span>Discount</span>
+            <span>-₹{discount}</span>
+          </div>
+        )}
 
-  <div className="border-t border-white/10 pt-3 mt-3 flex justify-between font-semibold text-lg">
-    <span>Total Payable</span>
-    <span className="text-primary">₹{totalPayable}</span>
-  </div>
-</div>
-
+        <div className="border-t border-white/10 pt-3 mt-3 flex justify-between font-semibold text-lg">
+          <span>Total Payable</span>
+          <span className="text-primary">₹{totalPayable}</span>
+        </div>
+      </div>
 
       {/* 🚚 SHIPPING INFO */}
       <div className="grid sm:grid-cols-2 gap-6">
-
         <div className="border border-white/10 rounded-xl p-5 bg-white/5">
           <h3 className="font-semibold mb-2">📍 Shipping Address</h3>
           <p className="text-sm opacity-80">
@@ -77,7 +90,6 @@ function OrderTracking() {
             Expected Delivery: 3–5 Business Days
           </p>
         </div>
-
       </div>
 
       {/* 📊 ORDER STATUS */}
