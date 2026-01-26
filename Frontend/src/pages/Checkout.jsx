@@ -23,13 +23,14 @@ function Checkout() {
   const handlePaymentSuccess = () => {
     localStorage.removeItem("cart");
 
-    navigate("/order-tracking", {
-      state: {
-        items,
-        method: paymentMethod,
-      },
-    });
-  };
+   navigate("/order-tracking", {
+  state: {
+    items,
+    payableAmount,
+    method: paymentMethod,
+  },
+});
+
 
   if (!paymentMethod) {
     return <p className="text-center mt-20">Invalid Payment</p>;
@@ -90,5 +91,6 @@ function Checkout() {
     </div>
   );
 }
+} 
 
 export default Checkout;
