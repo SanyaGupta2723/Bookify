@@ -1,68 +1,92 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Checkout() {
+  const { state } = useLocation();
   const navigate = useNavigate();
- 
-  const location = useLocation();
-const paymentMethod = location.state?.paymentMethod || "cod";
-<p className="mb-6 text-lg">
-  Payment Method: <b>{paymentMethod.toUpperCase()}</b>
-</p>
 
+  const { paymentMethod, payableAmount, items } = state || {};
 
+  const [timer, setTimer] = useState(300); // 5 min
 
-  const handlePlaceOrder = () => {
-    alert(`Payment Successful via ${paymentMethod.toUpperCase()} 🎉`);
+  // ⏱ Countdown timer
+  useEffect(() => {
+    if (timer === 0) return;
+
+    const interval = setInterval(() => {
+      setTimer((t) => t - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer]);
+
+  const handlePaymentSuccess = () => {
     localStorage.removeItem("cart");
-    navigate("/");
+
+    navigate("/order-tracking", {
+      state: {
+        items,
+        method: paymentMethod,
+      },
+    });
   };
 
+  if (!paymentMethod) {
+    return <p className="text-center mt-20">Invalid Payment</p>;
+  }
+
   return (
-    <div className="max-w-4xl mx-auto px-5 py-16">
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+    <div className="max-w-3xl mx-auto px-6 py-16 min-h-screen">
+      <h1 className="text-2xl font-bold mb-6">
+        Complete Your Payment
+      </h1>
 
-      {/* 💳 PAYMENT OPTIONS */}
-      <div className="space-y-4 mb-8">
-        <h2 className="text-xl font-semibold">Payment Method</h2>
-
-        <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="radio"
-            checked={paymentMethod === "cod"}
-            onChange={() => setPaymentMethod("cod")}
-          />
-          Cash on Delivery
-        </label>
-
-        <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="radio"
-            checked={paymentMethod === "upi"}
-            onChange={() => setPaymentMethod("upi")}
-          />
-          UPI (Google Pay / PhonePe)
-        </label>
-
-        <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="radio"
-            checked={paymentMethod === "card"}
-            onChange={() => setPaymentMethod("card")}
-          />
-          Debit / Credit Card
-        </label>
+      {/* 💳 PAYMENT METHOD */}
+      <div className="mb-6 text-sm opacity-80">
+        Payment Method:{" "}
+        <b className="uppercase">{paymentMethod}</b>
       </div>
 
-      {/* ✅ PLACE ORDER */}
-      <button
-        onClick={handlePlaceOrder}
-        className="btn btn-success px-10"
-      >
-        Place Order
-      </button>
+      {/* 💰 AMOUNT */}
+      <div className="mb-6 text-lg font-semibold">
+        Amount Payable: ₹{payableAmount}
+      </div>
+
+      {/* 📱 UPI SECTION */}
+      {paymentMethod === "upi" && (
+        <div className="border border-white/10 rounded-xl p-6 bg-white/5 text-center">
+          <h2 className="font-semibold mb-4">
+            Scan & Pay via UPI
+          </h2>
+
+          {/* 🔳 QR CODE (Dummy) */}
+          <div className="flex justify-center mb-4">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay"
+              alt="UPI QR"
+              className="rounded-lg"
+            />
+          </div>
+
+          <p className="text-sm opacity-70 mb-3">
+            Scan using GPay / PhonePe / Paytm
+          </p>
+
+          {/* ⏱ TIMER */}
+          <p className="text-sm text-warning mb-4">
+            Time remaining: {Math.floor(timer / 60)}:
+            {String(timer % 60).padStart(2, "0")}
+          </p>
+
+          {/* ✅ PAY BUTTON */}
+          <button
+            onClick={handlePaymentSuccess}
+            className="btn btn-success px-10"
+          >
+            I’ve Paid
+          </button>
+        </div>
+      )}
     </div>
   );
 }
