@@ -2,10 +2,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Checkout() {
-  const { state } = useLocation();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
-  const { paymentMethod, payableAmount, items } = state || {};
+const paymentMethod = state?.paymentMethod;
+const payableAmount = state?.payableAmount;
+
 
   const [timer, setTimer] = useState(300); // 5 min
 
