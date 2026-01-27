@@ -14,6 +14,9 @@ import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Checkout from "./pages/Checkout";
 import OrderTracking from "./pages/OrderTracking";
+import CardCheckout from "./pages/CardCheckout";
+
+
 
 
 function App() {
@@ -40,6 +43,8 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-tracking" element={<OrderTracking />} />
+          <Route path="/card-checkout" element={<CardCheckout />} />
+
 
         </Routes>
       </main>

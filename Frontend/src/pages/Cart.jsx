@@ -186,7 +186,7 @@ const handlePay = () => {
 
           {/* 🔥 PAY BUTTON */}
           <button
-            onClick={handlePayNow}
+            onClick={handlePay}
             className="btn btn-success px-10 mt-8"
           >
             {paymentMethod === "cod"
