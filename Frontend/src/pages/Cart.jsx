@@ -57,22 +57,30 @@ function Cart() {
   const payableAmount =
     totalPrice + gstAmount + deliveryFee - discount;
 
-  // ✅ PAY BUTTON HANDLER
-  const handlePayNow = () => {
+const handlePay = () => {
+  if (paymentMethod === "upi") {
+    navigate("/checkout", {
+      state: { payableAmount },
+    });
+  }
+
+  if (paymentMethod === "card") {
+    navigate("/card-checkout", {
+      state: { payableAmount },
+    });
+  }
+
   if (paymentMethod === "cod") {
     navigate("/order-tracking", {
       state: {
-        total: payableAmount,
         items: cart,
+        method: "cod",
       },
     });
     localStorage.removeItem("cart");
-  } else {
-    navigate("/checkout", {
-      state: { paymentMethod, total: payableAmount },
-    });
   }
 };
+
 
 
   return (
