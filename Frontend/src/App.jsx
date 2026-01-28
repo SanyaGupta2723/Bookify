@@ -44,6 +44,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-tracking" element={<OrderTracking />} />
           <Route path="/card-checkout" element={<CardCheckout />} />
+          <Route path="/book/:id" element={<BookDetails />} />
 
 
         </Routes>

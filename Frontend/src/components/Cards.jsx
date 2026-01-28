@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Cards({ item }) {
   return (
     <Link to={`/book/${item._id}`}>
-    <div className="px-3 h-full">
+    <div className="block cursor-pointer relative z-10">
       <div
         className="
           bg-base-200 rounded-xl p-4 h-full
