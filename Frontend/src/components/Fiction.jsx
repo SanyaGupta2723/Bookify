@@ -19,6 +19,7 @@ function FictionHero() {
   }, []);
 
   return (
+    <Link to={`/book/${item._id}`}>
     <section
       className="relative min-h-[50vh] flex items-center"
       style={{
@@ -27,6 +28,7 @@ function FictionHero() {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      
     >
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#020617]" />
@@ -56,7 +58,9 @@ function FictionHero() {
         </div>
       </div>
     </section>
+    </Link>
   );
+  
 }
 
 export default FictionHero;
