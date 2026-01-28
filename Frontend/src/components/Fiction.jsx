@@ -31,7 +31,8 @@ function FictionHero() {
       
     >
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#020617]" />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"></div>
+
 
       {/* HERO CONTENT */}
       <div className="relative z-10 max-w-6xl mx-auto px-6">
