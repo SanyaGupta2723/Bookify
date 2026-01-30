@@ -80,6 +80,7 @@ function FictionPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {books.map((book) => (
+              <Link key={book.id} to={`/book/${book.id}`}>
               <div
                 key={book.id}
                 className="group bg-white/5 border border-white/10 
@@ -109,6 +110,7 @@ function FictionPage() {
                   </span>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
 

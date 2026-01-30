@@ -19,7 +19,7 @@ function FictionHero() {
   }, []);
 
   return (
-    <Link to={`/book/${item._id}`}>
+    
     <section
       className="relative min-h-[50vh] flex items-center"
       style={{
@@ -59,7 +59,7 @@ function FictionHero() {
         </div>
       </div>
     </section>
-    </Link>
+   
   );
   
 }
