@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+
 
 const books = [
   {
@@ -39,9 +42,12 @@ const books = [
   },
 ];
 
+
 function FictionPage() {
   return (
+    
     <>
+    
       {/* NAVBAR */}
       
       <div className="h-20 bg-[#020617]"></div>
@@ -107,7 +113,9 @@ function FictionPage() {
           </div>
 
         </div>
+        
       </section>
+      
 
       {/* FOOTER */}
      
