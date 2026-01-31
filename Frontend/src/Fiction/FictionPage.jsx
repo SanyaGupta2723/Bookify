@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { ArrowLeft } from "lucide-react"; // optional (icon lib)
 
 
 function FictionPage() {
@@ -23,16 +22,7 @@ function FictionPage() {
 
   return (
     <>
-    {/* BACK BUTTON */}
-        <button
-        
-          onClick={() => navigate("/")}
-          className="fixed top-20 left-6 z-50 flex items-center gap-2 
-                     text-white hover:text-blue-400 transition"
-        >
-          <ArrowLeft size={22} />
-          <span className="hidden sm:block">Back</span>
-        </button>
+    
     
       {/* NAVBAR SPACE */}
       <div className="h-20 bg-[#020617]"></div>
