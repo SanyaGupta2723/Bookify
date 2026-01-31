@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-
 const books = [
   {
     id: 1,
@@ -42,54 +40,39 @@ const books = [
   },
 ];
 
-
 function FictionPage() {
   return (
-    
     <>
-    
-      {/* NAVBAR */}
-      
       <div className="h-20 bg-[#020617]"></div>
 
-      {/* HERO */}
-      
-
-      {/* BOOKS SECTION */}
-      
       <section className="relative min-h-screen">
-
-       <img
-  src="https://images.unsplash.com/photo-1507842217343-583bb7270b66"
-  className="absolute inset-0 w-full h-full object-cover"
-/>
-
-<div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-
+        <img
+          src="https://images.unsplash.com/photo-1507842217343-583bb7270b66"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-10 pb-20">
-
           <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
-  Explore the World of{" "}
-  <span className="text-indigo-400">Fiction</span>
-</h1>
+            Explore the World of{" "}
+            <span className="text-indigo-400">Fiction</span>
+          </h1>
 
-<p className="text-center text-white/70 max-w-2xl mx-auto mb-14">
-  Dive into timeless stories, epic fantasies, and unforgettable Fictional worlds.
-</p>
+          <p className="text-center text-white/70 max-w-2xl mx-auto mb-14">
+            Dive into timeless stories, epic fantasies, and unforgettable Fictional worlds.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {books.map((book) => (
-              <Link key={book.id} to={`/book/${book.id}`}>
-              <div
+              <Link
                 key={book.id}
+                to={`/book/${book.id}`}
                 className="group bg-white/5 border border-white/10 
                            rounded-2xl overflow-hidden 
                            backdrop-blur-md shadow-xl 
                            hover:scale-[1.03] transition duration-300"
               >
                 <div className="h-64 overflow-hidden">
-                  
                   <img
                     src={book.image}
                     alt={book.title}
@@ -109,18 +92,11 @@ function FictionPage() {
                     {book.genre}
                   </span>
                 </div>
-              </div>
               </Link>
             ))}
           </div>
-
         </div>
-        
       </section>
-      
-
-      {/* FOOTER */}
-     
     </>
   );
 }
