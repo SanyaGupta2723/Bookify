@@ -131,7 +131,7 @@ const handleBuyNow = () => {
     <button
     
       onClick={() => navigate(-1)}
-      className="fixed top-6 left-6 z-50 flex items-center gap-2 
+      className="fixed top-20 left-6 z-50 flex items-center gap-2 
                  text-white hover:text-blue-400 transition"
     >
       <ArrowLeft size={22} />
