@@ -3,10 +3,10 @@ import { getBook, getBookById } from "../controller/book.controller.js";
 
 const router = express.Router();
 
-// all books
-router.get("/books", getBook);
+// ✅ GET ALL BOOKS
+router.get("/", getBook);
 
-// single book by id
-router.get("/books/:id", getBookById);
+// ✅ GET SINGLE BOOK
+router.get("/:id", getBookById);
 
 export default router;
