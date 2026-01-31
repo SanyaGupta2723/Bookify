@@ -4,6 +4,8 @@ import axios from "axios";
 import { CartContext } from "../context/CartContext";
 import Cards from "../components/Cards";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react"; // optional (icon lib)
+
 
 
 function BookDetails() {
@@ -13,6 +15,7 @@ function BookDetails() {
   const [allBooks, setAllBooks] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+  
 
 
   const { setCartCount, setWishlistCount } = useContext(CartContext);
@@ -65,6 +68,8 @@ function BookDetails() {
 
     alert("Book added to cart 🛒");
   };
+ 
+
   
 
   // ❤️ ADD TO WISHLIST
@@ -122,6 +127,16 @@ const handleBuyNow = () => {
 
   return (
     <>
+     {/* BACK BUTTON */}
+    <button
+    
+      onClick={() => navigate(-1)}
+      className="fixed top-6 left-6 z-50 flex items-center gap-2 
+                 text-white hover:text-blue-400 transition"
+    >
+      <ArrowLeft size={22} />
+      <span className="hidden sm:block">Back</span>
+    </button>
       {/* MAIN DETAILS */}
       <div className="max-w-6xl mx-auto px-5 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
