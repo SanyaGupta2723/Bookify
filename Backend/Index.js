@@ -2,10 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-import bookRoutes from "./route/book.route.js";
-import authRoutes from "./route/auth.route.js";
-import userRoutes from "./route/user.route.js";
-import contactRoutes from "./route/contact.route.js";
+import bookRoutes from "./routes/book.route.js";
+import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
+import contactRoutes from "./routes/contact.route.js";
 
 
 dotenv.config(); // 👈 sabse upar
