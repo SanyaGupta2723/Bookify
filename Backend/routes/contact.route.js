@@ -6,18 +6,22 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
+    console.log("REQ BODY 👉", req.body);
+
     const { name, email, message } = req.body;
 
-    // 1️⃣ Save to DB
     await Contact.create({ name, email, message });
 
-    // 2️⃣ Send email to YOU
     await sendMail(name, email, message);
 
     res.status(200).json({ success: true });
   } catch (error) {
-    res.status(500).json({ success: false });
+    console.error("❌ CONTACT API ERROR 👉", error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 });
 
-export default router;
+export default router; // 👈 THIS LINE MUST BE HERE
