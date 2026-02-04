@@ -1,26 +1,27 @@
 import nodemailer from "nodemailer";
 
 const sendMail = async (name, email, message) => {
-  // 1️⃣ transporter banao (email bhejne ka engine)
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: process.env.EMAIL,      // tumhara gmail
-      pass: process.env.EMAIL_PASS // gmail app password
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
-  // 2️⃣ actual mail bhejo
+  // 🔍 verify connection
+  await transporter.verify();
+
   await transporter.sendMail({
-    from: email,                  
-    to: process.env.EMAIL,        
-    subject: "New Contact Message 📩",
-    html: `
-      <h2>New Contact Form Message</h2>
-      <p><b>Name:</b> ${name}</p>
-      <p><b>Email:</b> ${email}</p>
-      <p><b>Message:</b></p>
-      <p>${message}</p>
+    from: `"Kitabify Contact" <${process.env.EMAIL}>`,
+    to: process.env.EMAIL,
+    subject: "New Contact - Kitabify",
+    text: `
+Name: ${name}
+Email: ${email}
+Message: ${message}
     `,
   });
 };
