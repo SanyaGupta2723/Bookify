@@ -12,8 +12,8 @@ const sendMail = async (name, email, message) => {
 
   // 2️⃣ actual mail bhejo
   await transporter.sendMail({
-    from: email,                  // user ka email
-    to: process.env.EMAIL,        // tumhara email
+    from: email,                  
+    to: process.env.EMAIL,        
     subject: "New Contact Message 📩",
     html: `
       <h2>New Contact Form Message</h2>
