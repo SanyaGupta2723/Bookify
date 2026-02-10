@@ -4,16 +4,31 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: false, // ✅ OTP flow ke liye
     },
+
     email: {
       type: String,
       required: true,
       unique: true,
     },
+
     password: {
       type: String,
-      required: true,
+      required: false, // ✅ OTP login ke liye
+    },
+
+    otp: {
+      type: String,
+    },
+
+    otpExpiry: {
+      type: Date,
+    },
+
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
