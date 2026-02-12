@@ -20,7 +20,7 @@ function Footer() {
     <p>
       Sanya Gupta Industries Ltd.
       <br />
-      Providing reliable tech since 2024
+      Providing reliable Tech since 2024
     </p>
   </aside>
   <nav>
