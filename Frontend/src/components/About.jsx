@@ -18,77 +18,57 @@ function About() {
             About <span className="text-indigo-400">Kitabify</span>
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            A modern digital bookstore built for readers who love exploring stories,
-            knowledge, and inspiration in one place.
+            Kitabify is more than just a bookstore — it's a digital space where
+            stories, ideas, and knowledge come together in one beautiful experience.
           </p>
         </div>
 
-        {/* 📚 Mission Section */}
+        {/* 📚 Vision Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           
           <div>
             <h2 className="text-2xl font-semibold mb-4 text-indigo-400">
-              Our Mission
+              Our Vision
             </h2>
             <p className="text-gray-300 leading-relaxed">
-              At Kitabify, our mission is to make reading accessible and enjoyable
-              for everyone. We aim to create a seamless online platform where users
-              can discover fiction and non-fiction books, explore detailed insights,
-              and enjoy a secure and smooth experience.
+              We believe books have the power to transform lives. Kitabify was
+              created to make discovering and exploring books simple, engaging,
+              and secure. Whether you love fiction, non-fiction, or self-growth,
+              our platform is designed to make reading more accessible.
             </p>
           </div>
 
           <div className="bg-base-200 rounded-xl p-6 border border-white/10">
             <h3 className="text-xl font-semibold mb-3 text-purple-400">
-              Why Kitabify?
+              What Makes Us Special?
             </h3>
             <ul className="space-y-2 text-gray-300">
-              <li>✔️ Modern & Responsive UI</li>
-              <li>✔️ Secure Authentication (JWT + OTP)</li>
-              <li>✔️ Email Integration</li>
-              <li>✔️ Smooth User Experience</li>
+              <li>📖 Curated Fiction & Non-Fiction Collection</li>
+              <li>🔐 Secure Login & OTP Verification</li>
+              <li>🛒 Smooth Book Browsing Experience</li>
+              <li>💬 Easy Contact & Support System</li>
             </ul>
           </div>
         </div>
 
-        {/* ⚡ Tech Stack Section */}
-        <div className="bg-base-200 p-10 rounded-2xl border border-white/10">
+        {/* 🌟 Community Section */}
+        <div className="bg-base-200 p-10 rounded-2xl border border-white/10 mb-20">
           <h2 className="text-2xl font-semibold text-center mb-8 text-indigo-400">
-            Technology Behind Kitabify
+            Our Reading Community
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">React.js</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">Node.js</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">Express.js</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">MongoDB</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">JWT Auth</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">bcrypt</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">Nodemailer</p>
-            </div>
-            <div className="p-4 bg-base-100 rounded-lg hover:bg-indigo-500/10 transition">
-              <p className="font-medium">Tailwind CSS</p>
-            </div>
-          </div>
+          <p className="text-gray-300 text-center max-w-3xl mx-auto leading-relaxed">
+            Kitabify is built for passionate readers who want a smooth and modern
+            platform to explore books online. We aim to build a growing community
+            where readers can discover new titles, explore detailed descriptions,
+            and enjoy a seamless digital experience.
+          </p>
         </div>
 
-        {/* 💬 Footer Message */}
-        <div className="text-center mt-16 text-gray-400">
+        {/* 💬 Closing Message */}
+        <div className="text-center text-gray-400">
           <p>
-            Built with ❤️ by the Kitabify Team — Bringing stories closer to you.
+            Built with ❤️ to inspire readers and bring stories closer to you.
           </p>
         </div>
 
