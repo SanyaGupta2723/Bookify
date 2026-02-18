@@ -46,14 +46,18 @@ function PopularBook() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto mt-10 px-5">
-        <h1 className="text-xl font-semibold text-white">
-          Popular Books
-        </h1>
-        <p className="text-white/70">
-          Explore a curated collection of popular books loved by readers across the world.
-        </p>
-      </div>
+      <div className="max-w-7xl mx-auto mt-16 px-6 text-center">
+  <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-indigo-600 bg-clip-text text-transparent mb-4">
+    Popular Book's
+  </h1>
+
+  <p className="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
+    Dive into our handpicked collection of trending and reader-favorite books.
+    From timeless classics to modern bestsellers, find stories that inspire,
+    educate, and entertain.
+  </p>
+</div>
+
 
       <div className="relative max-w-7xl mx-auto px-8 mt-10 pb-12">
         <Slider {...settings}>
