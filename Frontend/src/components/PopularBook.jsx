@@ -62,6 +62,72 @@ function PopularBook() {
           ))}
         </Slider>
       </div>
+     
+  <>
+    <div className="max-w-7xl mx-auto mt-10 px-5">
+      <h1 className="text-xl font-semibold text-white">
+        Popular Books
+      </h1>
+      <p className="text-white/70">
+        Explore a curated collection of popular books loved by readers across the world.
+      </p>
+    </div>
+
+    <div className="relative max-w-7xl mx-auto px-8 mt-10 pb-12">
+      <Slider {...settings}>
+        {books.map((item) => (
+          <Cards key={item._id} item={item} />
+        ))}
+      </Slider>
+    </div>
+
+    {/* ✅ ABOUT US SECTION (Homepage Version) */}
+    <div className="bg-gradient-to-r from-purple-900 to-indigo-900 py-16 mt-10">
+      <div className="max-w-6xl mx-auto text-center px-6">
+        <h2 className="text-3xl font-bold text-white mb-6">
+          About Kitabify 📚
+        </h2>
+
+        <p className="text-white/80 max-w-3xl mx-auto mb-8">
+          Kitabify is a modern book discovery platform where readers can explore,
+          review, and discover amazing books across different genres.
+          Our mission is to make reading more engaging, accessible, and enjoyable
+          for everyone.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-6 mt-10">
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl">
+            <h3 className="text-xl font-semibold text-white mb-2">
+              📖 Huge Collection
+            </h3>
+            <p className="text-white/70">
+              Explore thousands of books from fiction to non-fiction.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl">
+            <h3 className="text-xl font-semibold text-white mb-2">
+              ⭐ Reader Reviews
+            </h3>
+            <p className="text-white/70">
+              Discover books loved and recommended by readers.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl">
+            <h3 className="text-xl font-semibold text-white mb-2">
+              🔍 Easy Search
+            </h3>
+            <p className="text-white/70">
+              Quickly find your next favorite read.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+);
+
     </>
   );
   
