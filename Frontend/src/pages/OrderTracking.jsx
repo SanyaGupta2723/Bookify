@@ -1,11 +1,39 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 function OrderTracking() {
   const { state } = useLocation();
 
-  // ✅ ADD THESE (FIX)
   const items = state?.items || [];
 
+  // 🛑 EMPTY ORDER UI
+  if (items.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-6">
+        
+        <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+          <span className="text-4xl">📦</span>
+        </div>
+
+        <h2 className="text-3xl font-bold mb-3">
+          No Orders Yet
+        </h2>
+
+        <p className="opacity-70 max-w-md mb-6">
+          You haven’t placed any orders yet. 
+          Browse our collection and place your first order today!
+        </p>
+
+        <Link
+          to="/"
+          className="btn btn-primary rounded-full px-8"
+        >
+          Browse Books 📚
+        </Link>
+      </div>
+    );
+  }
+
+  // ✅ NORMAL ORDER FLOW
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -29,7 +57,6 @@ function OrderTracking() {
         Thank you for your order. Your books are on the way 🚚
       </p>
 
-      {/* 🧾 PRICE BREAKUP */}
       <div className="border border-white/10 rounded-xl p-5 bg-white/5 mb-8">
         <h2 className="font-semibold mb-4 text-lg">Order Summary</h2>
 
@@ -67,40 +94,6 @@ function OrderTracking() {
         <div className="border-t border-white/10 pt-3 mt-3 flex justify-between font-semibold text-lg">
           <span>Total Payable</span>
           <span className="text-primary">₹{totalPayable}</span>
-        </div>
-      </div>
-
-      {/* 🚚 SHIPPING INFO */}
-      <div className="grid sm:grid-cols-2 gap-6">
-        <div className="border border-white/10 rounded-xl p-5 bg-white/5">
-          <h3 className="font-semibold mb-2">📍 Shipping Address</h3>
-          <p className="text-sm opacity-80">
-            Sanya Gupta <br />
-            New Delhi, India <br />
-            1100XX
-          </p>
-        </div>
-
-        <div className="border border-white/10 rounded-xl p-5 bg-white/5">
-          <h3 className="font-semibold mb-2">🚚 Delivery Status</h3>
-          <p className="text-sm opacity-80 mb-1">
-            Courier: Delhivery
-          </p>
-          <p className="text-sm text-success">
-            Expected Delivery: 3–5 Business Days
-          </p>
-        </div>
-      </div>
-
-      {/* 📊 ORDER STATUS */}
-      <div className="mt-10">
-        <h3 className="font-semibold mb-4">Order Progress</h3>
-
-        <div className="flex items-center gap-4 text-sm">
-          <span className="badge badge-success">Order Placed</span>
-          <span className="badge badge-outline">Packed</span>
-          <span className="badge badge-outline">Shipped</span>
-          <span className="badge badge-outline">Delivered</span>
         </div>
       </div>
     </div>
