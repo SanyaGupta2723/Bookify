@@ -20,6 +20,7 @@ import About from "./components/About";
 
 
 
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-base-100">
@@ -47,6 +48,7 @@ function App() {
           <Route path="/card-checkout" element={<CardCheckout />} />
           <Route path="/book/:id" element={<BookDetails />} />
           <Route path="/about" element={<About />} />
+          <Route path="/orders" element={<OrderTracking />} />
 
 
         </Routes>
