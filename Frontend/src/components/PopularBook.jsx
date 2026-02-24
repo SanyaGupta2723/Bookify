@@ -133,7 +133,7 @@ function PopularBook() {
         {/* 💬 Closing Message */}
         <div className="text-center text-gray-400">
           <p>
-            Built with ❤️ to inspire readers and bring stories closer to you.
+           
           </p>
         </div>
 
