@@ -2,20 +2,15 @@ import nodemailer from "nodemailer";
 
 const sendMail = async (name, email, message) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
       user: process.env.EMAIL,
       pass: process.env.EMAIL_PASS,
     },
   });
 
-  // 🔍 verify connection
-  await transporter.verify();
-
   await transporter.sendMail({
-    from: `"Kitabify Contact" <${process.env.EMAIL}>`,
+    from: process.env.EMAIL,
     to: process.env.EMAIL,
     subject: "New Contact - Kitabify",
     text: `
