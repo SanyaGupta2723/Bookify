@@ -7,30 +7,25 @@ import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
 import contactRoutes from "./routes/contact.route.js";
 
-
-
-dotenv.config(); // 👈 sabse upar
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// middlewares
 app.use(cors());
 app.use(express.json());
-app.use("/api", contactRoutes);
 
-// database connection
+// ✅ Only ONE contact route
+app.use("/api/contact", contactRoutes);
+
 mongoose
   .connect(MONGO_URI)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((error) => {
-    console.error("Error connecting to MongoDB:", error.message);
-  });
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) =>
+    console.error("Error connecting to MongoDB:", error.message)
+  );
 
-// routes
 app.get("/", (req, res) => {
   res.send("BookStore Project!");
 });
@@ -38,10 +33,7 @@ app.get("/", (req, res) => {
 app.use("/books", bookRoutes);
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
-app.use("/contact", contactRoutes);
 
-
-// server
 app.listen(PORT, () => {
   console.log(`Bookify listening on port ${PORT}`);
 });
