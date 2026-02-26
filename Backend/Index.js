@@ -12,7 +12,6 @@ import contactRoutes from "./routes/contact.route.js";
 dotenv.config(); // 👈 sabse upar
 
 const app = express();
-const contactRoutes = require("./routes/contactRoutes");
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
