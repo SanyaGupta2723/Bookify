@@ -1,16 +1,10 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendMail = async (name, email, message) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  await transporter.sendMail({
-    from: process.env.EMAIL,
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
     to: process.env.EMAIL,
     subject: "New Contact - Kitabify",
     text: `
