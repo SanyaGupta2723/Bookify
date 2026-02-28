@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 
 const sendMail = async (name, email, message) => {
+  
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -21,5 +22,6 @@ const sendMail = async (name, email, message) => {
     `,
   });
 };
+console.log("PASS LENGTH:", process.env.EMAIL_PASS?.length);
 
 export default sendMail;
