@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
 
@@ -21,7 +23,7 @@ function Contact() {
 
     try {
       await axios.post("http://localhost:5000/api/contact", formData);
-      alert("Message Sent Successfully ✅");
+      toast.success("Message Sent Successfully 🚀");
 
       // Reset form
       setFormData({
