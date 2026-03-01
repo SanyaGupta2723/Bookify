@@ -23,9 +23,11 @@ function Contact() {
 
     try {
       await axios.post("http://localhost:5000/api/contact", formData);
-      toast.success("Message Sent Successfully 🚀");
 
-      // Reset form
+      toast.success("Message Sent Successfully 🚀", {
+        theme: "dark",
+      });
+
       setFormData({
         name: "",
         email: "",
@@ -33,7 +35,9 @@ function Contact() {
       });
 
     } catch (error) {
-      alert("Failed to send message ❌");
+      toast.error("Failed to send message ❌", {
+        theme: "dark",
+      });
       console.error(error);
     }
   };
@@ -124,6 +128,9 @@ function Contact() {
 
         </div>
       </div>
+
+      {/* ✅ Toast Container (Very Important) */}
+      <ToastContainer position="top-right" autoClose={3000} />
 
     </section>
   );
