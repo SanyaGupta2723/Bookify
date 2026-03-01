@@ -5,7 +5,7 @@ const sendMail = async (name, email, message) => {
 
   const response = await resend.emails.send({
     from: "onboarding@resend.dev",
-    to: process.env.EMAIL,
+    to: "sanyakvds@gmail.com",
     subject: "New Contact Message",
     html: `
       <h3>New Message</h3>
