@@ -4,7 +4,7 @@ const sendMail = async (name, email, message) => {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   const response = await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: "Kitabify Team <onboarding@resend.dev>",
     to: "sanyakvds@gmail.com",
     subject: "New Contact Message",
     html: `
