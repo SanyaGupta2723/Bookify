@@ -3,13 +3,12 @@ import axios from "axios";
 import Cards from "../components/Cards";
 
 function BrowseBooks() {
-  // 🔹 STATES
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [sortPrice, setSortPrice] = useState(""); // low-high | high-low
+  const [sortPrice, setSortPrice] = useState("");
   const [search, setSearch] = useState("");
 
-  // 🔹 FETCH BOOKS FROM BACKEND
+  // 🔹 FETCH BOOKS
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -22,41 +21,40 @@ function BrowseBooks() {
     fetchBooks();
   }, []);
 
-  // 🔹 FILTER + SORT LOGIC
+  // 🔹 FILTER LOGIC
   let filteredBooks = [...books];
 
-  // 🔍 SEARCH
+  // 🔍 SEARCH BY TITLE
   if (search) {
     filteredBooks = filteredBooks.filter((book) =>
-      book.name?.toLowerCase().includes(search.toLowerCase())
-
+      book.title?.toLowerCase().includes(search.toLowerCase())
     );
   }
 
-  // 📂 CATEGORY
+  // 📂 CATEGORY FILTER (CASE INSENSITIVE)
   if (selectedCategory !== "all") {
     filteredBooks = filteredBooks.filter(
-      (book) => book.category === selectedCategory
+      (book) =>
+        book.category?.toLowerCase() === selectedCategory.toLowerCase()
     );
   }
 
-  // 💰 PRICE SORT
+  // 💰 SORT PRICE
   if (sortPrice === "low-high") {
-    filteredBooks.sort((a, b) => a.price - b.price);
+    filteredBooks.sort((a, b) => Number(a.price) - Number(b.price));
   }
 
   if (sortPrice === "high-low") {
-    filteredBooks.sort((a, b) => b.price - a.price);
+    filteredBooks.sort((a, b) => Number(b.price) - Number(a.price));
   }
 
-  // 🔹 JSX RETURN (NAVBAR & FOOTER APP.JSX ME HI RAKHO)
   return (
     <div className="flex min-h-screen bg-base-100">
 
-      {/* 🟣 LEFT SIDEBAR */}
+      {/* LEFT SIDEBAR */}
       <aside className="w-72 border-r p-6 space-y-8">
 
-        {/* 🔍 SEARCH */}
+        {/* SEARCH */}
         <div>
           <h3 className="font-semibold mb-2">Search</h3>
           <input
@@ -68,7 +66,7 @@ function BrowseBooks() {
           />
         </div>
 
-        {/* 📂 CATEGORY */}
+        {/* CATEGORY */}
         <div>
           <h3 className="font-semibold mb-2">Category</h3>
 
@@ -92,6 +90,7 @@ function BrowseBooks() {
             >
               Fiction
             </button>
+
             <button
               onClick={() => setSelectedCategory("fantasy")}
               className={`block ${
@@ -104,9 +103,9 @@ function BrowseBooks() {
             </button>
 
             <button
-              onClick={() => setSelectedCategory("Non-Fiction")}
+              onClick={() => setSelectedCategory("non-fiction")}
               className={`block ${
-                selectedCategory === "Non-Fiction"
+                selectedCategory === "non-fiction"
                   ? "text-primary font-medium"
                   : ""
               }`}
@@ -116,7 +115,7 @@ function BrowseBooks() {
           </div>
         </div>
 
-        {/* 💰 PRICE SORT */}
+        {/* SORT */}
         <div>
           <h3 className="font-semibold mb-2">Sort by Price</h3>
           <select
@@ -132,10 +131,9 @@ function BrowseBooks() {
 
       </aside>
 
-      {/* 🟢 RIGHT SIDE CONTENT */}
+      {/* RIGHT CONTENT */}
       <main className="flex-1 p-8">
 
-        {/* 🔥 PAGE HEADER */}
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-primary to-indigo-500 bg-clip-text text-transparent">
             Explore Our Book Collection
@@ -149,7 +147,6 @@ function BrowseBooks() {
           <div className="mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-primary to-indigo-500"></div>
         </div>
 
-        {/* 📚 BOOKS GRID */}
         {filteredBooks.length === 0 ? (
           <p className="text-base-content/70">
             No books found for this selection.
@@ -162,7 +159,6 @@ function BrowseBooks() {
           </div>
         )}
       </main>
-
     </div>
   );
 }
