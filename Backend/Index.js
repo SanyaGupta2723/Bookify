@@ -6,12 +6,18 @@ import helmet from "helmet";
 import bookRoutes from "./routes/book.route.js";
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
+import rateLimit from "express-rate-limit";
 import contactRoutes from "./routes/contact.route.js";
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+app.use(limiter);
 
 app.use(cors());
 app.use(helmet());
