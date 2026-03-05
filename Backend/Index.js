@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import helmet from "helmet";
 import bookRoutes from "./routes/book.route.js";
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
 
 // ✅ Only ONE contact route
