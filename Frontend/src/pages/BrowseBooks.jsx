@@ -52,84 +52,73 @@ function BrowseBooks() {
     <div className="flex min-h-screen bg-base-100">
 
       {/* LEFT SIDEBAR */}
-      <aside className="w-72 border-r p-6 space-y-8">
+      {/* LEFT SIDEBAR */}
+<aside className="w-72 px-6 py-8 border-r border-white/10 bg-[#0f172a]/60 backdrop-blur-md">
 
-        {/* SEARCH */}
-        <div>
-          <h3 className="font-semibold mb-2">Search</h3>
-          <input
-            type="text"
-            placeholder="Search books..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="input input-bordered w-full"
-          />
-        </div>
+  {/* SEARCH */}
+  <div className="mb-10">
+    <h3 className="text-sm uppercase tracking-widest text-gray-400 mb-3">
+      Search
+    </h3>
 
-        {/* CATEGORY */}
-        <div>
-          <h3 className="font-semibold mb-2">Category</h3>
+    <input
+      type="text"
+      placeholder="Search books..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="w-full px-4 py-2 rounded-lg bg-[#020617] border border-white/10 focus:border-indigo-500 outline-none text-sm"
+    />
+  </div>
 
-          <div className="space-y-2">
-            <button
-              onClick={() => setSelectedCategory("all")}
-              className={`block ${
-                selectedCategory === "all" ? "text-primary font-medium" : ""
-              }`}
-            >
-              All Books
-            </button>
+  {/* CATEGORY */}
+  <div className="mb-10">
+    <h3 className="text-sm uppercase tracking-widest text-gray-400 mb-4">
+      Category
+    </h3>
 
-            <button
-              onClick={() => setSelectedCategory("fiction")}
-              className={`block ${
-                selectedCategory === "fiction"
-                  ? "text-primary font-medium"
-                  : ""
-              }`}
-            >
-              Fiction
-            </button>
+    <div className="flex flex-col gap-2">
 
-            <button
-              onClick={() => setSelectedCategory("fantasy")}
-              className={`block ${
-                selectedCategory === "fantasy"
-                  ? "text-primary font-medium"
-                  : ""
-              }`}
-            >
-              Fantasy
-            </button>
+      {[
+        { label: "All Books", value: "all" },
+        { label: "Fiction", value: "fiction" },
+        { label: "Fantasy", value: "fantasy" },
+        { label: "Non-Fiction", value: "non-fiction" },
+      ].map((cat) => (
+        <button
+          key={cat.value}
+          onClick={() => setSelectedCategory(cat.value)}
+          className={`text-left px-3 py-2 rounded-md text-sm transition
+          ${
+            selectedCategory === cat.value
+              ? "bg-indigo-500/20 text-indigo-400"
+              : "text-gray-300 hover:bg-white/5"
+          }`}
+        >
+          {cat.label}
+        </button>
+      ))}
 
-            <button
-              onClick={() => setSelectedCategory("non-fiction")}
-              className={`block ${
-                selectedCategory === "non-fiction"
-                  ? "text-primary font-medium"
-                  : ""
-              }`}
-            >
-              Non-Fiction
-            </button>
-          </div>
-        </div>
+    </div>
+  </div>
 
-        {/* SORT */}
-        <div>
-          <h3 className="font-semibold mb-2">Sort by Price</h3>
-          <select
-            value={sortPrice}
-            onChange={(e) => setSortPrice(e.target.value)}
-            className="select select-bordered w-full"
-          >
-            <option value="">Default</option>
-            <option value="low-high">Low → High</option>
-            <option value="high-low">High → Low</option>
-          </select>
-        </div>
+  {/* SORT */}
+  <div>
+    <h3 className="text-sm uppercase tracking-widest text-gray-400 mb-3">
+      Sort by Price
+    </h3>
 
-      </aside>
+    <select
+      value={sortPrice}
+      onChange={(e) => setSortPrice(e.target.value)}
+      className="w-full px-4 py-2 rounded-lg bg-[#020617] border border-white/10 focus:border-indigo-500 outline-none text-sm"
+    >
+      <option value="">Default</option>
+      <option value="low-high">Low → High</option>
+      <option value="high-low">High → Low</option>
+    </select>
+  </div>
+
+</aside>
 
       {/* RIGHT CONTENT */}
       <main className="flex-1 p-8">
