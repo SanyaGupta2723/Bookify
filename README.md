@@ -9,7 +9,7 @@ Kitabify Bookstore app
 ## 👩‍💻 Author of the Project 
 
 **Sanya Gupta**  
-© 2026 — All rights reserved in it
+© 2026 — All rights reserved 
 
 ---
 
