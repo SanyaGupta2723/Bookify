@@ -6,7 +6,7 @@ Kitabify Bookstore app
 
 ---
 
-## 👩‍💻 author of this project
+## 👩‍💻 Project Author
 
 **Sanya Gupta**  
 © 2026 — All rights reserved in this project 
