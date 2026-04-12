@@ -1,65 +1,145 @@
-# Project Title
+# 📚 Bookifty
 
-Kitabify Bookstore app
-
-> A web application designed and developed as part of my personal / academic / professional portfolio.
+**Bookifty** — A modern 📚 online platform to explore 🔍, discover ✨, and buy 🛒 books with a seamless ⚡ and personalized 🎯 reading experience.
 
 ---
 
-## 👩‍💻 Project Author
+---
 
-**Sanya Gupta**  
-© 2026 — All rights reserved 
+## ✨ Features
 
----cv
+* 📖 Browse and explore books
+* 🔍 Search & filter by category
+* 💰 Sort books by price
+* 🛒 Add to Cart functionality
+* ❤️ Wishlist support
+* ⚡ Buy Now feature
+* 📦 Product detail page (with gallery & reviews)
+* 🎯 Recommended books section
+* 🔐 Secure backend APIs
 
-## 🔐 Project Ownership Notice
+---
 
-This project is **originally designed and developed by Sanya Gupta**.
+## 🛠 Tech Stack
 
-The source code is shared **temporarily** for review, evaluation, or collaboration purposes only.  
-**Ownership, authorship, and original credit remain solely with the author.**
+### Frontend
 
-Any reuse, redistribution, modification, or presentation of this project as one's own work  
-without explicit written permission from the author is **not permitted**.
+* ⚛️ React.js
+* 🎨 Tailwind CSS
+* 🌐 Axios
+
+### Backend
+
+* 🟢 Node.js
+* 🚀 Express.js
+* 🍃 MongoDB
+
+### Deployment
+
+* ▲ Vercel (Frontend)
+* 🔥 Render (Backend)
+* ☁️ MongoDB Atlas (Database)
+
+---
+
+## 📂 Project Structure
+
+```bash
+Bookifty/
+│
+├── frontend/
+│   ├── components/
+│   ├── pages/
+│   └── App.jsx
+│
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   └── index.js
+```
+
+---
+
+## ⚙️ Installation
+
+### 1️⃣ Clone the repo
+
+```bash
+git clone https://github.com/your-username/bookifty.git
+cd bookifty
+```
+
+---
+
+### 2️⃣ Setup Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+Create `.env` file:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+```
+
+---
+
+### 3️⃣ Setup Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🔐 Environment Variables
+
+| Key            | Description               |
+| -------------- | ------------------------- |
+| MONGO_URI      | MongoDB connection string |
+| JWT_SECRET     | Secret key                |
+| RESEND_API_KEY | Email service             |
+
+---
+
+## 📸 Screenshots
+
+* 🏠 Home Page
+* 📚 Browse Books
+* 📖 Book Details
+* 🛒 Cart Page
+
+---
+
+## 💡 Future Improvements
+
+* 🔍 Advanced search (author, rating)
+* ⭐ User reviews system
+* 🧾 Order history
+* 💳 Payment integration (Razorpay/Stripe)
+* 📦 Order tracking
+
+---
+
+## 🤝 Contributing
+
+Feel free to fork this repo and contribute!
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.  
-You are allowed to use, modify, and distribute the code **only with proper credit to the original author**.
-
-See the `LICENSE` file for more details.
+This project is licensed under the MIT License.
 
 ---
 
-## 🛠️ Tech Stack
+## ❤️ Made with Love
 
-- React / Next.js / MERN (update as per your project)
-- Tailwind CSS
-- JavaScript / TypeScript
-
----
-
-## 🚀 Purpose of This Project
-
-This project was built for:
-- Portfolio showcase
-- Learning & skill demonstration
-- Internship / job applications
-
----
-
-## 📌 Note for Reviewers / Collaborators
-
-If you are reviewing or testing this project:
-- Please ensure the author credit remains unchanged
-- Do not represent this project as your own work
-
----
-
-## 📬 Contact
-
-For permissions or collaboration:
-**Sanya Gupta**
+Developed by **Sanya Gupta** 🚀
